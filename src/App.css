@@ -16,15 +16,40 @@
     font-size: 3rem;
   }
   
-  .services {
-    background-image: url('/public/images/img-2.jpg');
+  .videoPage{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("/public/images/img-home.jpg");
     background-position: center;
-    background-size: cover;
+    background-size: cover ;
     background-repeat: no-repeat;
-    color: #fff;
-    font-size: 100px;
   }
-  
+  .video-container{
+    background-color: blueviolet;
+    margin: 2vh 40vh 50vh 40vh;
+    padding: 20px;
+  }
+  .video-item{
+    flex-direction: column;
+  }
+
+  .video-item  img{
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .video-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+    width: 80%;
+  }
   .products {
     background-image: url('/public/images/img-1.jpg');
     background-position: center;

@@ -21,11 +21,11 @@ const initialStore = [{
     description: "Immerse yourself in the legendary Great Hall of Hogwarts School of Witchcraft and Wizardry! Think about all of the memories you would make here as a student. The sorting ceremony, holiday meals, speeches from the headmaster, and more! Relax and enjoy this 3 hour video."
 },{
     id:3,
-    name:"Lord of the Rings | The Shire - Music & Ambience", 
-    url:"https://www.youtube.com/watch?v=30b7_S0paCQ&t=2043s",
-    theme: ["movies","relax","shire","LOTR","rings","Lord of the rings"],
-    picture: "https://i.ytimg.com/vi/30b7_S0paCQ/maxresdefault.jpg",
-    description: "I want to see the wild country again before I die, and the Mountains; but he is still in love with the Shire, with woods and fields and little rivers."
+    name:"Coding Session - Lofi Hip Hop Mix [ Coding Lofi Mix | Coding Music ]", 
+    url:"https://www.youtube.com/watch?v=qZjWUkohSQg",
+    theme: ["LoFi","relax","coding","Hip Hop"],
+    picture: "https://i.ytimg.com/vi/qZjWUkohSQg/maxresdefault.jpg",
+    description: "Welcome to Lofi Boost Your Mood Thank you all for watching and enjoying this Coding Lofi Mix Wish you happy listening"
 },{
     id:4,
     name:"Lord of the Rings | The Shire - Music & Ambience", 

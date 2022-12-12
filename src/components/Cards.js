@@ -7,9 +7,6 @@ function Cards() {
 
   const videos = useStore();
 
-  const check = ()=>{
-    videos.map((video)=> console.log(video))
-  }
   return (
     <div className='cards'>
       <h1>Check out this EPIC Destinations!</h1>
@@ -20,6 +17,7 @@ function Cards() {
           (
             <CardItem
               key={index}
+              id={video.id}
               src={video.picture}
               name={video.name}
               label={video.theme}
