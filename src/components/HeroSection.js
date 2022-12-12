@@ -1,5 +1,6 @@
 import React from 'react'
 import "../App.css"
+import { useStore } from '../store/StoreProvider'
 import {Button} from "./Button"
 import "./HeroSection.css"
 

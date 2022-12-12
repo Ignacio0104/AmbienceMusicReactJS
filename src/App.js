@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes as Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -6,6 +6,7 @@ import Home from './components/pages/Home';
 import Services from './components/pages/Services';
 import SignUp from './components/pages/SignUp';
 import Products from './components/pages/Products';
+import { useStore } from './store/StoreProvider';
 
 
 function App() {
