@@ -16,9 +16,7 @@ export default function Videos(){
                 <div className="video-item">
                     <div className="video-info">
                         <h1 className="video-title"> {video[0].name} </h1>
-                        <a href={video[0].url} target="_blank">
-                            <img className="video-image" src={video[0].picture} alt="Error"></img>
-                        </a>
+                        <iframe className="video-image" src={video[0].url} title="Youtube video"></iframe>
                         <p>{video[0].description}</p>
                     </div>
                 </div>

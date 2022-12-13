@@ -49,10 +49,11 @@
   }
 
   .video-image{
-    width: 400px;
+    width: 600px;
     height: 300px;
-    padding: 20px;
     border-radius: 30px;    
+    margin: auto;
+    margin-top: 20px;
   }
 
   .video-info {
@@ -64,6 +65,7 @@
     width: 80%;
   }
   .video-info p{
+    padding-top: 30px;
     font-family: 'Dosis', sans-serif;
     font-weight: bold;
   }

@@ -9,11 +9,11 @@ function Cards() {
 
   return (
     <div className='cards'>
-      <h1>Check out this EPIC Destinations!</h1>
+      <h1>Check out our top videos!</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
         <ul className='cards__items'> 
-        {videos.map((video,index) => 
+        {videos.map((video,index) => index <3 &&
           (
             <CardItem
               key={index}
