@@ -113,6 +113,12 @@
     margin-right: 30px;
     width: 400px;
   }
+
+  .no-results{
+    margin: auto;
+    grid-column: 1/4;
+    color: #adb5bd;
+  }
   
   @media only screen and (min-width: 1200px) {
     .content__blog__container {

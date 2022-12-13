@@ -12,10 +12,11 @@ function Cards(props) {
 
   const [filteredList, setFilteredList] = useState(videos)
 
- const verifyThemeKeys = (video,text)=>{
+ const verifyKeyWords = (video,text)=>{
 
     for (let index = 0; index < video.theme.length; index++) {
-      if(video.theme[index].toLowerCase().startsWith(text.toLowerCase()))
+      if(video.theme[index].toLowerCase().startsWith(text.toLowerCase()) 
+      || video.name.toLowerCase().startsWith(text.toLowerCase()))
       {
         return true;
       }
@@ -24,7 +25,7 @@ function Cards(props) {
 
   const filterAction = ()=>{
     let videosCopy = videos;
-    setFilteredList(videosCopy.filter((video)=>verifyThemeKeys(video,filterText.current.value)));
+    setFilteredList(videosCopy.filter((video)=>verifyKeyWords(video,filterText.current.value)));
   }
 
   const addVideo = ()=>{
@@ -57,6 +58,7 @@ function Cards(props) {
         <div className='cards__wrapper'>
         <ul className='cards__items'> 
         {
+          filteredList.length>0 ?
           filteredList.map((video,index) => index < limit &&
           (
             <CardItem
@@ -65,8 +67,11 @@ function Cards(props) {
               src={video.picture}
               name={video.name}
               label={video.theme}
-            />)
-        )}
+            />)):
+            (
+              <h1 className='no-results'>No videos found...</h1>
+            )    
+        }
         </ul>
         </div>
       </div>
