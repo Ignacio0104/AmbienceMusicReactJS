@@ -69,6 +69,44 @@
     font-family: 'Dosis', sans-serif;
     font-weight: bold;
   }
+
+  .blog-container{
+    display: flex;
+  }
+  .blog-title{
+    margin: 20px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .blog-text {
+    margin: 20px 50px 20px 50px;
+  }
+
+  .blog-text p{
+    font-family: 'Raleway', sans-serif;
+  }
+  .blog-text h3{
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .image-container img{
+    width: 800px;
+    height: 400px;
+  }
+
+  .image-container{
+    text-align: center;
+  }
+
+  .blog-side-text{
+    border: 1px solid black; 
+    width: 40%;
+  }
+  .blog-side-text h3{
+    display: flex;
+    padding-top: 20px;
+    justify-content: center;
+  }
+
   .products {
     background-image: url('/public/images/img-1.jpg');
     background-position: center;

@@ -30,8 +30,8 @@ function HeroSection() {
       <p>Get your work done with us!</p>
       <div className='hero-btns'>
         <Button className="btns" buttonStyle="btn--outline"
-        buttonSize="btn--large" navigateTo={"/videos"}>
-            GET STARTED
+        buttonSize="btn--large" navigateTo={"/blog"}>
+            Information
         </Button>
         <Button className="btns" videoId={randomId} onClick={getRandomId} buttonStyle="btn--primary"
         buttonSize="btn--large" navigateTo={"/videos"}>

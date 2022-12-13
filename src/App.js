@@ -3,10 +3,10 @@ import './App.css';
 import { BrowserRouter as Router, Routes as Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/pages/Home';
-import SignUp from './components/pages/SignUp';
 import Products from './components/pages/Products';
 import { useStore } from './store/StoreProvider';
 import Videos from './components/pages/Videos';
+import Blog from './components/pages/Blog';
 
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Switch>
           <Route path='/' exact element={<Home/>}/>
           <Route path='/videos' exact element={<Videos/>}/>
-          <Route path='/sign-up' exact element={<SignUp/>}/>
+          <Route path='/blog' exact element={<Blog/>}/>
           <Route path='/products' exact element={<Products/>}/>
         </Switch>
     </Router>
