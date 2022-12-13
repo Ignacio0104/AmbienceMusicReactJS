@@ -12,9 +12,19 @@ function Cards(props) {
 
   const [filteredList, setFilteredList] = useState(videos)
 
+ const verifyThemeKeys = (video,text)=>{
+
+    for (let index = 0; index < video.theme.length; index++) {
+      if(video.theme[index].toLowerCase().startsWith(text.toLowerCase()))
+      {
+        return true;
+      }
+    }
+  }
+
   const filterAction = ()=>{
     let videosCopy = videos;
-    setFilteredList(videosCopy.filter((video)=>video.theme[0].toLowerCase().startsWith(filterText.current.value.toLowerCase())));
+    setFilteredList(videosCopy.filter((video)=>verifyThemeKeys(video,filterText.current.value)));
   }
 
   const addVideo = ()=>{
@@ -46,7 +56,8 @@ function Cards(props) {
       <div className='cards__container'>
         <div className='cards__wrapper'>
         <ul className='cards__items'> 
-        {filteredList.map((video,index) => index < limit &&
+        {
+          filteredList.map((video,index) => index < limit &&
           (
             <CardItem
               key={index}
