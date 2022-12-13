@@ -1,0 +1,88 @@
+  
+  .videoPage{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("/public/images/img-home.jpg");
+    background-position: center;
+    background-size: cover ;
+    background-repeat: no-repeat;
+  }
+
+  .video-title{
+    font-size: 25px;
+    color: #22333b;
+    font-family: 'Dosis', sans-serif;
+  }
+  .video-container{
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.59);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.4px);
+    -webkit-backdrop-filter: blur(5.4px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    margin: 5vh 40vh 10vh 40vh;
+    padding: 20px;
+  }
+  .video-item{
+    flex-direction: column;
+  }
+
+  .video-image{
+    width: 600px;
+    height: 300px;
+    border-radius: 20px;    
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  .video-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+    width: 80%;
+  }
+  .video-info p{
+    padding-top: 30px;
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
+  }
+
+  @media screen and (max-width:1165px) {
+    .video-title{
+        font-size:20px;
+    }
+    .video-image{
+        width: 400px;
+        height: 200px;
+    }
+
+    .video-info {
+       font-size: 15px;
+      }
+
+    .video-container{
+        margin: 2vh 30vh 20vh 30vh;
+    }
+
+}
+
+@media screen and (max-width:890px) {
+    .video-title{
+        font-size:15px;
+    }
+    .video-info p{
+        font-size: 14px;
+    }
+    .video-image{
+        width: 100%;
+        height: 100%;
+    }
+    .video-container{
+        margin: 2vh 2vh 20vh 2vh;
+    }
+}
