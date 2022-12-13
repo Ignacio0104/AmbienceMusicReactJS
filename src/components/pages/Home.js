@@ -9,7 +9,7 @@ function Home(){
     return(
         <>
             <HeroSection/>
-            <Cards></Cards>
+            <Cards limit={3}></Cards>
             <Footer></Footer>
         </>
     );

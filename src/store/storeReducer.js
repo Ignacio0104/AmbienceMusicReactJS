@@ -1,8 +1,6 @@
 const types = {
-    authLogin: 'auth - login',
-    authLogout: 'auth - logout',
-    productDeleteAll: 'product - delete all',
-    productChange: 'product - change'
+    FILTER: "FILTER",
+    ADD: "ADD"
 }
 
 const initialStore = [{
@@ -42,19 +40,34 @@ const initialStore = [{
     description: "Enjoy the relaxing atmosphere of this tropical beach cafe ambience with instrumental beach music, softly crashing waves, birds, and soft chatter in the background. Grab your favorite book and a cup of coffee and take a seat near the water to watch the waves gently rolling on shore. The playlist I created for this cafe ambience is a mix of relaxing Hawaiian, acoustic guitar, ukulele, island, and reggae music. Hope you enjoy your beach day vacation!"
 }]
 
+
 const storeReducer = (state, action) => { 
     switch(action.type) {
-        case types.authLogout:
-            return {
-                ...state,
-                user: null
+       /* case types.FILTER:
+            let newArray = [];
+            for (let index = 0; index < action.payload.videos.length; index++) {
+                if(action.payload.videos[index].theme[0].toLowerCase().startsWith(action.payload.query.toLowerCase()))
+                {
+                    console.log(`El video ${action.payload.videos[index]} empieza con ${action.payload.query} `)
+                    newArray.push(action.payload.videos[index]);
+                }else{
+                    console.log(`Video ${action.payload.videos[index]} afuera`)
+                }            
             }
-
-        case types.authLogin:
-            return {
+            console.log(newArray);
+            return newArray;*/
+        case types.ADD:
+            return [
                 ...state,
-                user: action.payload
-            }
+                {
+                    id: action.payload.id,
+                    name: action.payload.name,
+                    url: action.payload.url,
+                    theme: action.payload.theme,
+                    picture: action.payload.picture,
+                    description: action.payload.description
+                }
+            ]
 
         case types.productDeleteAll:
             return {

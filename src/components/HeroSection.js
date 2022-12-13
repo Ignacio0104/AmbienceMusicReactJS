@@ -34,7 +34,7 @@ function HeroSection() {
             Information
         </Button>
         <Button className="btns" videoId={randomId} onClick={getRandomId} buttonStyle="btn--primary"
-        buttonSize="btn--large" navigateTo={"/videos"}>
+        buttonSize="btn--large" navigateTo={"/video"}>
             RANDOM VIDEO <i className='far fa-play-circle'/>
         </Button>
       </div>
