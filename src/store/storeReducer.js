@@ -29,14 +29,14 @@ const initialStore = [{
 },{
     id:4,
     name:"Lord of the Rings | The Shire - Music & Ambience", 
-    url:"https://www.youtube.com/watch?v=30b7_S0paCQ&t=2043s",
+    url:"https://www.youtube.com/watch?v=30b7_S0paCQ&",
     theme: ["movies","relax","shire","LOTR","rings","Lord of the rings"],
     picture: "https://i.ytimg.com/vi/30b7_S0paCQ/maxresdefault.jpg",
     description: "I want to see the wild country again before I die, and the Mountains; but he is still in love with the Shire, with woods and fields and little rivers."
 },{
     id:5,
     name:"Beach Cafe Ambience: tropical music, ocean waves, & no worries!", 
-    url:"https://www.youtube.com/watch?v=oFRFaI0Ntvk&t=4858s",
+    url:"https://www.youtube.com/watch?v=oFRFaI0Ntvk&",
     theme: ["tropical","beach","ocean","cafe"],
     picture: "https://i.ytimg.com/vi/oFRFaI0Ntvk/maxresdefault.jpg",
     description: "Enjoy the relaxing atmosphere of this tropical beach cafe ambience with instrumental beach music, softly crashing waves, birds, and soft chatter in the background. Grab your favorite book and a cup of coffee and take a seat near the water to watch the waves gently rolling on shore. The playlist I created for this cafe ambience is a mix of relaxing Hawaiian, acoustic guitar, ukulele, island, and reggae music. Hope you enjoy your beach day vacation!"
