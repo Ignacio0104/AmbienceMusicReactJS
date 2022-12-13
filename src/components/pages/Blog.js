@@ -35,8 +35,23 @@ export default function Blog(){
                 </p> 
             </div>  
             <div className="blog-side-text">
-                <h3>Related Links</h3>
-                <a href="https://www.studyinternational.com/news/focus-music/">- Full Article </a>        
+            <h3>Related Links</h3>
+                <div className="side-text-link"> 
+                    <img src="/images/articleOnePhoto.jpg" alt="first article"></img>          
+                    <a href="https://www.studyinternational.com/news/focus-music/" target="_blank">- This is the ultimate focus music for students, according to research </a>  
+                </div>
+                <div className="side-text-link"> 
+                    <img src="/images/article_2.jpg" alt="second article"></img>          
+                    <a href="https://www.online-tech-tips.com/fun-stuff/16-best-music-channels-on-youtube-for-focus-study-and-work/" target="_blank">- 16 Best Music Channels on YouTube for Focus, Study, and Work </a>  
+                </div>  
+                <div className="side-text-link"> 
+                    <img src="/images/article_3.jpg" alt="third article"></img>          
+                    <a href="https://thevarsity.ca/2022/09/11/lo-fi-and-new-age-music-as-a-balm-for-the-brain/" target="_blank">- Lo-fi and new-age music as a balm for the brain </a>  
+                </div>  
+                <div className="side-text-link"> 
+                    <img src="/images/article_4.jpg" alt="forth article"></img>          
+                    <a href="https://blog.siriusxm.com/relax-collection/" target="_blank">- How To Use Calming Music for Stress Relief and Better Sleep </a>  
+                </div>        
             </div>       
         </div>
     )

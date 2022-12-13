@@ -100,13 +100,30 @@
   .blog-side-text{
     border: 1px solid black; 
     width: 40%;
+    height:fit-content;
   }
   .blog-side-text h3{
     display: flex;
     padding-top: 20px;
     justify-content: center;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  
+  .side-text-link{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
   }
 
+  .side-text-link img{
+    width: 150px;
+    height: 100px;
+  }
+  .side-text-link a{
+    margin: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+  }
   .products {
     background-image: url('/public/images/img-1.jpg');
     background-position: center;
