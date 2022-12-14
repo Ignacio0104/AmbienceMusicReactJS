@@ -58,37 +58,16 @@
     font-size: 12px;
 }
 
+.error-label-bottom{
+    position: absolute;
+    font-size: 12px;
+    margin-top: 308px;
+}
+
 .error-label-left-middle{
-    position: absolute;
-    margin-top: 75px;
-    font-size: 12px;
-}
-
-.error-label-right-top{
-    position: absolute;
-    margin-top: 75px;
-    margin-left: 190px;
-    font-size: 12px;
-}
-
-
-.error-label-center{
-    position: absolute;
-    margin-left: 100px;
-    margin-top: 23px;
-    font-size: 12px;
-}
-
-.error-label-left{
     position: absolute;
     margin-top: 178px;
     font-size: 12px;
 }
 
-.error-label-right{
-    position: absolute;
-    margin-top: 23px;
-    margin-left: 190px;
-    font-size: 12px;
-}
 

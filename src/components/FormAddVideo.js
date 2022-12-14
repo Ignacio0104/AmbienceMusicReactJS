@@ -57,11 +57,11 @@ function FormAddVideo() {
     <div className='form-add-container'>
         <form className='form-add'>
             <input type="text" ref={nameText} placeholder="name"/>
-            {nameError && <p className='error-label-left'>Please verify the name</p>}
+            {nameError && <p className='error-label-left-top'>Please verify the name</p>}
             <input type="text" ref={urlText} placeholder="url"></input>
-            {urlError && <p className='error-label-right'>Please verify the name</p>}
+            {urlError && <p className='error-label-right-top'>Please verify the URL</p>}
             <input type="text" ref={labelText} placeholder="labels"></input>
-            {labelsError && <p className='error-label-center'>Please verify the name</p>}
+            {labelsError && <p className='error-label-center'>Please verify the label</p>}
             <i className="plus-btn fas fa-plus" onClick={addLabel}></i>
             {labels.length > 0 ? 
             (
@@ -75,9 +75,9 @@ function FormAddVideo() {
                 </div>
             )}
             <input type="text" className='picture-input' ref={pictureText} placeholder="picture"></input>
-            {pictureError && <p className='error-label-left'>Please verify the name</p>}
+            {pictureError && <p className='error-label-left-middle'>Please verify the pictura</p>}
             <textarea type="text" className='description-input' ref={descriptionText} placeholder="description"></textarea>
-            {descriptionError && <p className='error-label-right'>Please verify the name</p>}
+            {descriptionError && <p className='error-label-bottom'>Please verify the description</p>}
             <button type='submit' onClick={validateFields}> Submit </button>
         </form>
     </div>
