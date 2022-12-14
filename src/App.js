@@ -8,6 +8,7 @@ import { useStore } from './store/StoreProvider';
 import Blog from './components/pages/Blog';
 import VideoPage from './components/pages/VideoPage';
 import Videos from './components/pages/Videos';
+import FormAdd from './components/pages/FormAdd';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path='/video' exact element={<VideoPage/>}/>
           <Route path='/blog' exact element={<Blog/>}/>
           <Route path='/videos-main' exact element={<Videos/>}/>
+          <Route path='/add-video' exact element={<FormAdd/>}/>
         </Switch>
     </Router>
     </>

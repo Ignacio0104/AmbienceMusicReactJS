@@ -69,7 +69,7 @@ function Footer() {
               target='_blank'
               aria-label='Facebook'
             >
-              <i class='fab fa-facebook-f' />
+              <i className='fab fa-facebook-f' />
             </Link>
             <Link
               class='social-icon-link instagram'

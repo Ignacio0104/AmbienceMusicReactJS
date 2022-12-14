@@ -101,9 +101,17 @@
 
   .form-container{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
+  .form-container p{
+    color: #adb5bd;
+    font-style: italic;
+    padding-top: 10px;
+    font-size: 15px;
+    
+  }
   .form-container button{
     padding: 10px;
   }
@@ -113,13 +121,47 @@
     margin-right: 30px;
     width: 400px;
   }
+  
+  .button-container .btn{
+    margin-left: 80px;
+    margin-top: 20px;
+    border: solid 1px #252e48;
+    font-family: 'Dosis', sans-serif;
+  }
 
+  .button-container .btn i{
+    margin-left: 15px;
+  }
+
+  .button-container .btn:hover{
+    color: #fff;
+    background-color: #252e48;
+    border: solid 1px #adb5bd;
+    transition: 0.5s ease-out;
+  }
   .no-results{
     margin: auto;
     grid-column: 1/4;
     color: #adb5bd;
   }
-  
+
+  #btnAdd{
+    margin-left: 80px;
+    margin-top: 20px;
+    border: solid 1px #252e48;
+    font-family: 'Dosis', sans-serif;
+  }
+
+  #btnAdd i{
+    margin-left: 15px;
+  }
+
+  #btnAdd:hover{
+    color: #fff;
+    background-color: #252e48;
+    border: solid 1px #adb5bd;
+    transition: 0.5s ease-out;
+  }
   @media only screen and (min-width: 1200px) {
     .content__blog__container {
       width: 84%;

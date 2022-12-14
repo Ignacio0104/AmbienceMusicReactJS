@@ -3,6 +3,7 @@ import { useDispatch, useStore } from '../store/StoreProvider'
 import CardItem from './CardItem'
 import "./Cards.css"
 import "./CardsMain.css"
+import {Button} from "./Button"
 
 function Cards(props) {
 
@@ -50,9 +51,20 @@ function Cards(props) {
       <h1>{props.limit  && "Check out our top videos!"}</h1>
       { !props.limit && 
       (
-        <div className="form-container">
-                <input ref={filterText} onChange={filterAction} className='input-text' type="text" placeholder="Search..."></input>
-            </div>
+        <div>
+          <div className="form-container">
+                  <input ref={filterText} onChange={filterAction} className='input-text' type="text" placeholder="Search..."></input>
+                  <p>Type your keywords (For example: "relax", "Harry Potter", "Beach", etc)</p>
+          </div>
+          <div className='button-container'>
+              <Button className="btns" buttonStyle="btn--primary"
+              buttonSize="btn--large" navigateTo={"/add-video"}>
+                  Add video <i class="fas fa-plus-circle"></i>
+              </Button>
+              
+          </div>
+        </div>
+        
       )}
       <div className='cards__container'>
         <div className='cards__wrapper'>
