@@ -1,0 +1,34 @@
+.form-add-container{
+    display: flex;
+    justify-content: center;
+    border: 1px solid #22333b;;
+    width: max-content;
+    margin: auto;
+    margin-top: 10vh;
+}
+
+.form-add{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 30px;
+    padding: 30px;
+}
+
+.form-add button{
+    grid-column: 1/3;
+    padding: 10px;
+}
+
+.labels-container{
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+}
+
+.labels-container p{
+    padding-left: 10px;
+}
+.plus-btn{
+    cursor: pointer;
+}
+
