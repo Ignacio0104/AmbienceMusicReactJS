@@ -32,7 +32,7 @@ function FormAddVideo() {
     }
    
     const validateLabel = ()=>{
-        setLabelsError(labels.length<0);
+        setLabelsError(labels.length<1);
     }
     const validatePicture = ()=>{
         setPictureError(!pictureText.current.value.includes("https://") && 
@@ -56,12 +56,11 @@ function FormAddVideo() {
   return (
     <div className='form-add-container'>
         <form className='form-add'>
-            <input type="text" ref={nameText} placeholder="name"/>
+            <input type="text" className={nameError && "error-border"} ref={nameText} placeholder="name"/>
             {nameError && <p className='error-label-left-top'>Please verify the name</p>}
-            <input type="text" ref={urlText} placeholder="url"></input>
+            <input type="text" className={urlError && "error-border"} ref={urlText} placeholder="url"></input>
             {urlError && <p className='error-label-right-top'>Please verify the URL</p>}
-            <input type="text" ref={labelText} placeholder="labels"></input>
-            {labelsError && <p className='error-label-center'>Please verify the label</p>}
+            <input type="text" className={labelsError && "error-border"} ref={labelText} placeholder="labels"></input>
             <i className="plus-btn fas fa-plus" onClick={addLabel}></i>
             {labels.length > 0 ? 
             (
@@ -74,7 +73,7 @@ function FormAddVideo() {
                     <p>There are no labels added</p>
                 </div>
             )}
-            <input type="text" className='picture-input' ref={pictureText} placeholder="picture"></input>
+            <input type="text" className={'picture-input'} ref={pictureText} placeholder="picture"></input>
             {pictureError && <p className='error-label-left-middle'>Please verify the pictura</p>}
             <textarea type="text" className='description-input' ref={descriptionText} placeholder="description"></textarea>
             {descriptionError && <p className='error-label-bottom'>Please verify the description</p>}
