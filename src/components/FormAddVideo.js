@@ -21,28 +21,47 @@ function FormAddVideo() {
     const deleteLabel = (labelSelected)=>{
         setLabels(labels.filter((label)=>label!==labelSelected));
     }
-
-
-
-    const validateName = (input)=>{
+    const validateName = ()=>{
         if(nameText.current.value.length > 5)
-        {
-            input.setCustomValidity("")
-        }else{
-            input.setCustomValidity("Please verify")
-        }
+            setNameError(false)
+        else 
+            setNameError(true)
+    }
+    const validateUrl = ()=>{
+        setUrlError(!urlText.current.value.includes("www.youtube.com/embed"))
+    }
+   
+    const validateLabel = ()=>{
+        setLabelsError(labels.length<0);
+    }
+    const validatePicture = ()=>{
+        setPictureError(!pictureText.current.value.includes("https://") && 
+        (!pictureText.current.value.includes("jpg")||!pictureText.current.value.includes("jpeg")
+        ||!pictureText.current.value.includes("bmp")));
+    }
+
+    const validateDescription = ()=>{
+        setDescriptionError(descriptionText.current.value<30)
+    }
+
+    const validateFields =(e)=>{
+        e.preventDefault();
+        validateName();
+        validateUrl();
+        validateLabel();
+        validatePicture();
+        validateDescription();
     }
     
   return (
     <div className='form-add-container'>
         <form className='form-add'>
-            <input type="text" ref={nameText} 
-             onInput="validateName(this);" 
-             onInvalid="validateName(this);" 
-             placeholder="name"/>
-            {nameError && <p className='error-label'>Please verify the name</p>}
+            <input type="text" ref={nameText} placeholder="name"/>
+            {nameError && <p className='error-label-left'>Please verify the name</p>}
             <input type="text" ref={urlText} placeholder="url"></input>
+            {urlError && <p className='error-label-right'>Please verify the name</p>}
             <input type="text" ref={labelText} placeholder="labels"></input>
+            {labelsError && <p className='error-label-center'>Please verify the name</p>}
             <i className="plus-btn fas fa-plus" onClick={addLabel}></i>
             {labels.length > 0 ? 
             (
@@ -55,9 +74,11 @@ function FormAddVideo() {
                     <p>There are no labels added</p>
                 </div>
             )}
-            <input type="text" ref={pictureText} placeholder="picture"></input>
-            <input type="text" ref={descriptionText} placeholder="description"></input>
-            <button> Submit </button>
+            <input type="text" className='picture-input' ref={pictureText} placeholder="picture"></input>
+            {pictureError && <p className='error-label-left'>Please verify the name</p>}
+            <textarea type="text" className='description-input' ref={descriptionText} placeholder="description"></textarea>
+            {descriptionError && <p className='error-label-right'>Please verify the name</p>}
+            <button type='submit' onClick={validateFields}> Submit </button>
         </form>
     </div>
   )

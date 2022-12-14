@@ -4,7 +4,9 @@
     border: 1px solid #22333b;;
     width: max-content;
     margin: auto;
-    margin-top: 10vh;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+    border-radius: 10px;
 }
 
 .form-add{
@@ -32,7 +34,61 @@
     cursor: pointer;
 }
 
-.error-label{
-    display: flex;
+.picture-input{
+    grid-column: 1/3;
+}
+
+.description-input{
+    grid-column: 1/3;
+    height: 100px;
+    padding: 5px;
+    resize: none;
+}
+
+.error-label-right-top{
+    position: absolute;
+    margin-top: 23px;
+    margin-left: 190px;
+    font-size: 12px;
+}
+
+.error-label-left-top{
+    position: absolute;
+    margin-top: 23px;
+    font-size: 12px;
+}
+
+.error-label-left-middle{
+    position: absolute;
+    margin-top: 75px;
+    font-size: 12px;
+}
+
+.error-label-right-top{
+    position: absolute;
+    margin-top: 75px;
+    margin-left: 190px;
+    font-size: 12px;
+}
+
+
+.error-label-center{
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 23px;
+    font-size: 12px;
+}
+
+.error-label-left{
+    position: absolute;
+    margin-top: 178px;
+    font-size: 12px;
+}
+
+.error-label-right{
+    position: absolute;
+    margin-top: 23px;
+    margin-left: 190px;
+    font-size: 12px;
 }
 
