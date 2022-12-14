@@ -29,21 +29,6 @@ function Cards(props) {
     setFilteredList(videosCopy.filter((video)=>verifyKeyWords(video,filterText.current.value)));
   }
 
-  const addVideo = ()=>{
-    dispatch(
-      {
-        type: "ADD",
-        payload:{
-          id:3,
-          name:"Coding Session - Lofi Hip Hop Mix [ Coding Lofi Mix | Coding Music ]", 
-          url:"https://www.youtube.com/embed/qZjWUkohSQg",
-          theme: ["LoFi","relax","coding","Hip Hop"],
-          picture: "https://i.ytimg.com/vi/qZjWUkohSQg/maxresdefault.jpg",
-          description: "Welcome to Lofi Boost Your Mood Thank you all for watching and enjoying this Coding Lofi Mix Wish you happy listening"
-        }
-      }
-    )
-  }
   let limit = props.limit ? props.limit : videos.length+1;
 
   return (

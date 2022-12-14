@@ -25,7 +25,7 @@ function HeroSection() {
 
   return (
     <div className='hero-container'>
-      <video src={require('../videos/video-1.mp4' )}  type="video/mp4"  autoPlay loop muted />
+      <video src='/videos/video-1.mp4'  type="video/mp4"  autoPlay loop muted />
       <h1>JUST RELAX AND FOCUS</h1>
       <p>Get your work done with us!</p>
       <div className='hero-btns'>

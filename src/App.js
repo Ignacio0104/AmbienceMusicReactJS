@@ -21,7 +21,7 @@ function App() {
           <Route path='/video' exact element={<VideoPage/>}/>
           <Route path='/blog' exact element={<Blog/>}/>
           <Route path='/videos-main' exact element={<Videos/>}/>
-          <Route path='/add-video' exact element={<FormAdd/>}/>
+          <Route path='/add-video' exact element={<FormAdd />}/>
         </Switch>
     </Router>
     </>

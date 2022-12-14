@@ -2,6 +2,7 @@ const types = {
     ADD: "ADD"
 }
 
+
 const initialStore = [{
     id:1,
     name:"Cozy Jazz Music at Snow Christmas Night", 
@@ -44,6 +45,11 @@ const initialStore = [{
     views:0
 }]
 
+const nextId = () => initialStore.reduce(function(prev, current) {
+    return (prev.y > current.y) ? prev : current
+})
+
+
 
 const storeReducer = (state, action) => { 
     switch(action.type) {
@@ -51,7 +57,7 @@ const storeReducer = (state, action) => {
             return [
                 ...state,
                 {
-                    id: action.payload.id,
+                    id: nextId(),
                     name: action.payload.name,
                     url: action.payload.url,
                     theme: action.payload.theme,
@@ -59,19 +65,6 @@ const storeReducer = (state, action) => {
                     description: action.payload.description
                 }
             ]
-
-        case types.productDeleteAll:
-            return {
-                ...state,
-                products: []
-            }
-
-        case types.productChange:
-            return {
-                ...state,
-                products: [{ id: 3, title: 'Product #3' }]
-            }
-
         default:
             return state;
     }
