@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes as Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -10,8 +10,20 @@ import VideoPage from './components/pages/VideoPage';
 import Videos from './components/pages/Videos';
 import FormAdd from './components/pages/FormAdd';
 
+import  {firebaseApp}  from "./credentials";
+import {getAuth, onAuthStateChanged} from 'firebase/auth'
+const auth = getAuth(firebaseApp);
 
 function App() {
+  const [usuario, setUsuario] = useState(null)  //VERIFICAR LOGUEO A BASE DE DATOS
+  onAuthStateChanged(auth,(usuarioFirebase)=>{
+    if(usuarioFirebase){
+      setUsuario(usuarioFirebase)
+    }else{
+      setUsuario(null)
+    }
+  })
+
   return (
     <>
     <Router>

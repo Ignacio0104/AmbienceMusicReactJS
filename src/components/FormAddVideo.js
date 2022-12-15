@@ -2,6 +2,13 @@ import React, { useRef, useState } from 'react'
 import { useDispatch } from '../store/StoreProvider';
 import "./FormAddVideo.css"
 
+import  {firebaseApp}  from "../credentials";
+import {getAuth, signOut} from 'firebase/auth'
+import {getFirestore,collection,addDoc,getDocs,doc,deleteDoc,getDoc,setDoc} from "firebase/firestore"
+
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
+
 function FormAddVideo() {
     const dispatch = useDispatch();
     const [labels, setLabels] = useState([]);
@@ -62,16 +69,30 @@ function FormAddVideo() {
         setDescriptionError(descriptionText.current.value<30)
     }
 
-    const validateFields =(e)=>{
+    const validateFields = async (e)=>{
         e.preventDefault();
         validateName();
         validateUrl();
         validateLabel();
         validatePicture();
         validateDescription();
+        try{   //ADD A BASE DE DATOS
+            await addDoc(collection(db,'videos'),{
+                id:1,
+                name:"Cozy Jazz Music at Snow Christmas Night", 
+                theme: ["jazz","christmas","winter"],
+                url:"https://www.youtube.com/embed/qFbY87Gm7dI",
+                picture: "https://i.ytimg.com/vi/qFbY87Gm7dI/maxresdefault.jpg?v=6395b513",
+                description: "On cold snow nights, what could be better than sitting somewhere in the middle of the noisy city, sipping your favorite drink and watching the space darken in a corner of this cozy room, on a christmas night. The relaxing and smooth melodies of Piano Jazz are enough for those who sit here to feel like they can drop their souls into that wonderful space. A truly meaningful relaxation time before the end of a long day. Take time for yourself, enjoy the peace of life through delicious cups of coffee and some soft jazz music.",
+                views:0
+            })
+        }catch(err){
+            console.log(err)
+        }
         if(!nameError&&!urlError&&!labelsError&&!pictureError&&!descriptionError)
         {
             addVideo();
+     
         }
     }
     
