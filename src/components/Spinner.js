@@ -1,18 +1,35 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from '../store/StoreProvider';
 import "./Spinner.css"
 
-function Spinner() {
+function Spinner(props) {
 
     const [spinnerVisible, setSpinnerVisible] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
       setTimeout(()=> setSpinnerVisible(false),500)
     
     }, [])
+
+    const hideSpinner = async()=>{     
+        let response = await props.load();
+        if(response!== null && response.length>0)
+        {
+           dispatch({
+            type: "UPDATE_ALL",
+            payload:{
+              list: response
+            }
+           })
+        }else{
+          console.log("Hubo un problema")
+        }
+    }
     
 
   return (
-    <div className={`${spinnerVisible ? "spinner-container" : "spinner-hide"}`}>
+    <div onLoad={hideSpinner} className={`${spinnerVisible ? "spinner-container" : "spinner-hide"}`}>
         <img src="/images/1495.gif" className="spinner-item" alt='spinner loader'/> 
     </div>
   )

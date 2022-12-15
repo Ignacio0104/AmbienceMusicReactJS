@@ -1,5 +1,8 @@
+import { type } from "@testing-library/user-event/dist/type"
+
 const types = {
-    ADD: "ADD"
+    ADD: "ADD",
+    UPDATE_ALL : "UPDATE_ALL"
 }
 
 
@@ -65,6 +68,9 @@ const storeReducer = (state, action) => {
                     description: action.payload.description
                 }
             ]
+        case types.UPDATE_ALL:
+            state= action.payload.list;
+            return state;
         default:
             return state;
     }

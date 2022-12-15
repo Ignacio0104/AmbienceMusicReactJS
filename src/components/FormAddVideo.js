@@ -78,12 +78,12 @@ function FormAddVideo() {
         validateDescription();
         try{   //ADD A BASE DE DATOS
             await addDoc(collection(db,'videos'),{
-                id:1,
-                name:"Cozy Jazz Music at Snow Christmas Night", 
-                theme: ["jazz","christmas","winter"],
-                url:"https://www.youtube.com/embed/qFbY87Gm7dI",
-                picture: "https://i.ytimg.com/vi/qFbY87Gm7dI/maxresdefault.jpg?v=6395b513",
-                description: "On cold snow nights, what could be better than sitting somewhere in the middle of the noisy city, sipping your favorite drink and watching the space darken in a corner of this cozy room, on a christmas night. The relaxing and smooth melodies of Piano Jazz are enough for those who sit here to feel like they can drop their souls into that wonderful space. A truly meaningful relaxation time before the end of a long day. Take time for yourself, enjoy the peace of life through delicious cups of coffee and some soft jazz music.",
+                id:5,
+                name:"Beach Cafe Ambience: tropical music, ocean waves, & no worries!", 
+                url:"https://www.youtube.com/embed/oFRFaI0Ntvk",
+                theme: ["tropical","beach","ocean","cafe"],
+                picture: "https://i.ytimg.com/vi/oFRFaI0Ntvk/maxresdefault.jpg",
+                description: "Enjoy the relaxing atmosphere of this tropical beach cafe ambience with instrumental beach music, softly crashing waves, birds, and soft chatter in the background. Grab your favorite book and a cup of coffee and take a seat near the water to watch the waves gently rolling on shore. The playlist I created for this cafe ambience is a mix of relaxing Hawaiian, acoustic guitar, ukulele, island, and reggae music. Hope you enjoy your beach day vacation!",
                 views:0
             })
         }catch(err){
