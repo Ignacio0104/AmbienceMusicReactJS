@@ -7,10 +7,6 @@ function Spinner(props) {
     const [spinnerVisible, setSpinnerVisible] = useState(true);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-      setTimeout(()=> setSpinnerVisible(false),500)
-    
-    }, [])
 
     const hideSpinner = async()=>{     
         let response = await props.load();
@@ -22,6 +18,8 @@ function Spinner(props) {
               list: response
             }
            })
+           setSpinnerVisible(false)
+           props.loading();
         }else{
           console.log("Hubo un problema")
         }

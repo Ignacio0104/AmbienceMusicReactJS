@@ -14,7 +14,13 @@ const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
 function Home(props){
 
+    const [isLoading, setIsLoading] = useState(true);
+
     const videos = useStore();
+
+    const endLoading = ()=>{
+        setIsLoading(false)
+    }
 
     const getVideos= async()=>{
         try{
@@ -52,12 +58,11 @@ function Home(props){
                 <input id="clave" type="text"></input>
                 <button type="submit">Submit </button>
             </form> */}
-            <Spinner load={getVideos}></Spinner>
-            {
-                //while()
-            }
+            <Spinner load={getVideos} loading={endLoading}></Spinner>
             <HeroSection/>
-            <Cards limit={3}></Cards>
+            {
+                !isLoading &&  <Cards limit={3}></Cards>
+            }
             <Footer></Footer>
         </>
     );
