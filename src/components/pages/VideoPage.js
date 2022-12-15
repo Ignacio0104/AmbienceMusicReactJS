@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import "../../App.css"
 import { useStore } from "../../store/StoreProvider";
+import Spinner from "../Spinner";
 import Video from "../Video";
 
 
@@ -12,6 +13,9 @@ export default function VideoPage(){
     let video = videos.filter((video)=> video.id === id)
 
     return (
-      <Video video={video}></Video>
+      <>
+          <Spinner></Spinner>
+        <Video video={video}></Video>
+      </>
     )
 }

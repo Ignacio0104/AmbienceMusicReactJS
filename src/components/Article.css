@@ -1,5 +1,6 @@
 .blog-container{
     display: flex;
+    background-color: #edede9;
   }
   .blog-title{
     margin: 20px;
