@@ -22,21 +22,7 @@ function Home(props){
         setIsLoading(false)
     }
 
-    const getVideos= async()=>{
-        try{
-            const querySnapshot = await getDocs(collection(db,"videos"));
-            const registers = [];
-            querySnapshot.forEach((doc)=>{
-                registers.push({...doc.data(), id:doc.id})
-            })
-            return registers;
-        }catch(err){
-            console.log(err)
-            return [{}];
-        }
-    }
     
-
    /* const [registro, setRegistro] = useState(false);  //REGISTRO A BASE DE DATOS
 
     const handleSubmit= async(e)=>{
@@ -58,7 +44,7 @@ function Home(props){
                 <input id="clave" type="text"></input>
                 <button type="submit">Submit </button>
             </form> */}
-            <Spinner load={getVideos} loading={endLoading}></Spinner>
+            <Spinner loading={endLoading}></Spinner>
             <HeroSection/>
             {
                 !isLoading &&  <Cards limit={3}></Cards>

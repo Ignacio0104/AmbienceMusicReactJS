@@ -3,7 +3,7 @@ import "./Video.css"
 
 function Video(props) {
   return (
-        <div className="videoPage">
+        <div className="videoPage" >
             <div className="video-container">
             <div className="video-item">
                 <div className="video-info">

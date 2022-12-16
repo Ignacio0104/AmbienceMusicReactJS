@@ -20,7 +20,7 @@ function HeroSection() {
   videos.map((video)=>videosId.push(video.id));
 
   const getRandomId = () =>{
-    setRandomId(Math.floor(Math.random()*videos.length+1))
+    setRandomId(Math.floor(Math.random()*videos.length))
   }
 
   return (
@@ -33,7 +33,7 @@ function HeroSection() {
         buttonSize="btn--large" navigateTo={"/blog"}>
             Information
         </Button>
-        <Button className="btns" videoId={randomId} onClick={getRandomId} buttonStyle="btn--primary"
+        <Button className="btns" videoId={videos[randomId].id} onClick={getRandomId} buttonStyle="btn--primary"
         buttonSize="btn--large" navigateTo={"/video"}>
             RANDOM VIDEO <i className='far fa-play-circle'/>
         </Button>

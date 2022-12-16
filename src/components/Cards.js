@@ -4,12 +4,16 @@ import CardItem from './CardItem'
 import "./Cards.css"
 import "./CardsMain.css"
 import {Button} from "./Button"
+import { deleteDoc, doc, getDoc, getFirestore, setDoc } from 'firebase/firestore'
+import  {firebaseApp}  from "../credentials";
 
 function Cards(props) {
 
   const videos = useStore();
   const dispatch = useDispatch();
   const filterText = useRef();
+
+  const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
   const [filteredList, setFilteredList] = useState(videos)
 
@@ -30,6 +34,36 @@ function Cards(props) {
   }
 
   let limit = props.limit ? props.limit : videos.length+1;
+  
+  /*const deleteVideo= async(id)=>{
+    alert(id)
+    await deleteDoc(doc(db,"videos",id))
+    dispatch({
+        type: "DELETE",
+        payload:{
+            id: id
+        } 
+    })
+}*/
+
+   const getOne = async (id)=>{
+      try {
+        const docRef = doc(db,"videos",id);
+        const docSnap = await getDoc(docRef);
+        console.log(docSnap.data);
+      } catch (error) {
+        console.log(error)
+      }
+   }
+
+  const updateVideo = async(id)=>{
+      await setDoc(doc(db,"videos",id),{
+        //Toda la informacion
+        id: id,
+        nombre: id
+      })
+  }
+
 
   return (
     <div className='cards'>

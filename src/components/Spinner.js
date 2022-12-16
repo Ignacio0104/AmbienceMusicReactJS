@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from '../store/StoreProvider';
+import { getVideos } from '../store/storeReducer';
 import "./Spinner.css"
 
 function Spinner(props) {
 
     const [spinnerVisible, setSpinnerVisible] = useState(true);
     const dispatch = useDispatch();
-
-
+    
     const hideSpinner = async()=>{     
-        let response = await props.load();
+        let response = await getVideos();
         if(response!== null && response.length>0)
         {
            dispatch({

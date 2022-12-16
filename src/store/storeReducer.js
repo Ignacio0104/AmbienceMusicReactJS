@@ -1,13 +1,16 @@
 import { type } from "@testing-library/user-event/dist/type"
+import { collection, getDocs, getFirestore } from "firebase/firestore"
+import  {firebaseApp}  from "../credentials";
+const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
 const types = {
     ADD: "ADD",
-    UPDATE_ALL : "UPDATE_ALL"
+    UPDATE_ALL : "UPDATE_ALL",
+    DELETE : "DELETE"
 }
 
-
 const initialStore = [{
-    id:1,
+    /*id:1,
     name:"Cozy Jazz Music at Snow Christmas Night", 
     url:"https://www.youtube.com/embed/qFbY87Gm7dI",
     theme: ["jazz","christmas","winter"],
@@ -46,12 +49,26 @@ const initialStore = [{
     picture: "https://i.ytimg.com/vi/oFRFaI0Ntvk/maxresdefault.jpg",
     description: "Enjoy the relaxing atmosphere of this tropical beach cafe ambience with instrumental beach music, softly crashing waves, birds, and soft chatter in the background. Grab your favorite book and a cup of coffee and take a seat near the water to watch the waves gently rolling on shore. The playlist I created for this cafe ambience is a mix of relaxing Hawaiian, acoustic guitar, ukulele, island, and reggae music. Hope you enjoy your beach day vacation!",
     views:0
-}]
+*/}]
 
 const nextId = () => initialStore.reduce(function(prev, current) {
     return (prev.y > current.y) ? prev : current
 })
 
+
+const getVideos= async()=>{
+    try{
+        const querySnapshot = await getDocs(collection(db,"videos"));
+        const registers = [];
+        querySnapshot.forEach((doc)=>{
+            registers.push({...doc.data(), id:doc.id})
+        })
+        return registers;
+    }catch(err){
+        console.log(err)
+        return [{}];
+    }
+}
 
 
 const storeReducer = (state, action) => { 
@@ -71,10 +88,13 @@ const storeReducer = (state, action) => {
         case types.UPDATE_ALL:
             state= action.payload.list;
             return state;
+        case types.DELETE:
+            alert("Estoy");
+            return state.filter((video)=>video.id!==action.payload.id);
         default:
             return state;
     }
 }
 
-export { initialStore, types };
+export { initialStore, types, getVideos };
 export default storeReducer;

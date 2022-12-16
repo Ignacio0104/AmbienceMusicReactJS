@@ -12,7 +12,7 @@ function CardItem(props) {
                 <div className='cards__item__info'>
                     <h5 className='cards__item__text'>{props.name}</h5>
                 </div>
-            </Link>
+            </Link>      
         </li>
     </>
   )
