@@ -6,7 +6,7 @@
     height: 100%;
     background-image: url("/public/images/img-home.jpg");
     background-position: center;
-    background-size: cover ;
+    background-size:  auto;
     background-repeat: no-repeat;
   }
 
@@ -25,6 +25,7 @@
     border: 1px solid rgba(255, 255, 255, 0.28);
     margin: 5vh 40vh 10vh 40vh;
     padding: 20px;
+    height: fit-content;
   }
   .video-item{
     flex-direction: column;
@@ -69,9 +70,14 @@
         margin: 2vh 30vh 20vh 30vh;
     }
 
+
 }
 
 @media screen and (max-width:890px) {
+
+    .videoPage{
+      position: absolute;
+    }
     .video-title{
         font-size:15px;
     }
@@ -83,6 +89,8 @@
         height: 100%;
     }
     .video-container{
-        margin: 2vh 2vh 20vh 2vh;
+        margin: 15vh 2vh 2vh 2vh;
+        padding: 15px 2px 15px 2px;
     }
+
 }

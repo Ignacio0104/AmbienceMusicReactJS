@@ -150,8 +150,12 @@
 
     .footer-link-wrapper{
         flex-direction: column;
+        text-align: center;
     }
 
+    .footer-link-items{
+        padding: 12px;
+    }
     .social-media-wrap{
         flex-direction: column;
     }
