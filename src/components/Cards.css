@@ -192,4 +192,18 @@
       margin-top: 10px;
       font-size: 30px;
     }
+    .input-text{
+      padding: 10px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .form-container p{
+      font-size: 12px;
+    }
+    .button-container .btn{
+      margin-left: 0px;
+      margin-top: 30px;
+    }
+    
   }
