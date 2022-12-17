@@ -11,18 +11,22 @@ const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
 function RegisterForm() {
     const dispatch = useDispatch();
-    const [labels, setLabels] = useState([]);
+    const [passwordOneVisible, setPasswordOneVisible] = useState(false)
+    const [passwordTwoVisible, setPasswordTwoVisible] = useState(false)
     const [nameError, setNameError] = useState(false);
     const [lastnameError, setLastnameError] = useState(false);
     const [emailError, setEmailError] = useState(false);
-    const [pictureError, setPictureError] = useState(false);
-    const [descriptionError, setDescriptionError] = useState(false);
+    const [dateError, setDateError] = useState(false);
+    const [passwordErrorOne, setPasswordErrorOne] = useState(false);
+    const [passwordErrorTwo, setPasswordErrorTwo] = useState(false);
+    const [passwordEqualError, setPasswordEqualError] = useState(false)
     const [allowSubmit, setAllowSubmit] = useState(false)
     const emailText = useRef();
     const nameText = useRef();
     const lastnameText = useRef();
-    const pictureText = useRef();
-    const descriptionText = useRef();
+    const dateText = useRef();
+    const passwordOneText = useRef();
+    const passwordTwoText = useRef();
 
   const addVideo = ()=>{
     dispatch(
@@ -31,12 +35,16 @@ function RegisterForm() {
         payload:{
           name:nameText.current.value, 
           url:lastnameText.current.value,
-          theme: labels,
-          picture: pictureText.current.value,
-          description: descriptionText.current.value
+          //theme: labels,
+         // picture: pictureText.current.value,
+         // description: descriptionText.current.value
         }
       }
     )
+  }
+
+  const toogleVisibility = (e)=>{
+    console.log(e.currentTarget)
   }
 
     const validateName = ()=>{
@@ -71,21 +79,26 @@ function RegisterForm() {
             setEmailError(true)
         }
     }
-    const validatePicture = ()=>{
+    const validateDate = ()=>{
         enableButton();
-        setPictureError(!pictureText.current.value.includes("https://") && 
-        (!pictureText.current.value.includes("jpg")||!pictureText.current.value.includes("jpeg")
-        ||!pictureText.current.value.includes("bmp")));
+        if(dateText.current.value > new Date().getDate())
+        {
+            setDateError(true)
+        }else{
+            setDateError(false)
+        }
     }
 
-    const validateDescription = ()=>{
+    const validatePassword = ()=>{
         enableButton();
-        setDescriptionError(descriptionText.current.value.length<30)
+        setPasswordErrorOne(passwordOneText.current.value.length<8)
+        setPasswordErrorTwo(passwordTwoText.current.value.length<8)
+        setPasswordEqualError(!(passwordTwoText.current.value === passwordOneText.current.value))
     }
 
     const enableButton = ()=>{
         if(nameText.current.value.length >0 && lastnameText.current.value.length>0
-            && pictureText.current.value.length >0 && descriptionText.current.value.length >0)
+            && dateText.current.value.length >0 && passwordOneText.current.value.length >0)
             {
                setAllowSubmit(true);
             }else{
@@ -95,7 +108,7 @@ function RegisterForm() {
     
     const updateList = ()=>{
         
-        if(!nameError&&!lastnameError&&!emailError&&!pictureError&&!descriptionError)
+        if(!nameError&&!lastnameError&&!emailError&&!dateError&&!passwordErrorOne)
         {
             //addVideo();   
             /*try{  
@@ -119,8 +132,8 @@ function RegisterForm() {
         validateName();
         validateUrl();
         validateEmail();
-        validatePicture();
-        validateDescription();
+        validateDate();
+        validateEmail();
         updateList();
     }
     
@@ -136,7 +149,7 @@ function RegisterForm() {
                 <input type="email" onBlur={validateEmail} className={`email-input ${emailError && "error-border"}` } 
                 ref={emailText} placeholder="email"></input>
                 <p className='error-label-center'> {emailError && "Use a valid email address"}</p>     
-                <input type="date" className={emailError && "error-border"} ></input>   
+                <input type="date" ref={dateText} onBlur={validateDate} className={dateError && "error-border"} ></input>   
                 <div className='radio-btn-container'>
                     <div className='female-radiobtn'>
                         <span class="radio-checkbox__text">Female</span>
@@ -147,11 +160,17 @@ function RegisterForm() {
                         <input class="radio-checkbox__input" type="radio" name="genre" value="male"/>
                     </div>
                 </div>
-                <p className='error-label-center'> {nameError && "Link must begin with 'https://' and be .jpg, .jpeg or .bmp"}</p>
-                <input type="password" onBlur={validateDescription} className={`${descriptionError && "error-border"}` } ref={descriptionText} placeholder="Password"></input>
-                <input type="password" onBlur={validateDescription} className={`${descriptionError && "error-border"}` } ref={descriptionText} placeholder="Repeat password"></input>
-                <p> {descriptionError && "Description can't be less than 30 characters"}</p>
-                <p> {descriptionError && "Description can't be less than 30 characters"}</p>
+                <p className='error-label-center'> {dateError && "Date of birth can't be larger than today"}</p>
+                <div className='password-container'>
+                    <input type="password" onBlur={validatePassword} className={`${(passwordErrorOne || passwordEqualError) && "error-border"}` } ref={passwordOneText} placeholder="Password"></input>
+                    <i onClick={()=>toogleVisibility(passwordOneText)} class={`${passwordOneVisible ? "fas fa-eye" : "fas fa-eye-slash" }`}></i>
+                </div>
+                <div className='password-container'>
+                    <input type="password" onBlur={validatePassword} className={`${(passwordErrorTwo || passwordEqualError) && "error-border"}` } ref={passwordTwoText} placeholder="Repeat password"></input>
+                    <i onClick={()=>toogleVisibility(passwordTwoText)} class={`${passwordTwoVisible ? "fas fa-eye" : "fas fa-eye-slash" }`}></i>
+                </div>
+                <p> {passwordErrorOne && "Password can't be less than 8 characters"}<br/>{passwordEqualError && "Passwords do not match"}</p>
+                <p> {passwordErrorTwo && "Password can't be less than 8 characters"}</p>
                 <button type='submit' disabled={allowSubmit ? false : true} onClick={validateFields}> Submit </button>
             </form>
         </div>
