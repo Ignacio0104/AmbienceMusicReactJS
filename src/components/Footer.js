@@ -1,14 +1,25 @@
-import React from 'react'
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {Button} from "./Button"
 import "./Footer.css"
+import  {firebaseApp}  from "../credentials";
 
 function Footer() {
+
+  const [subscribed, setSubscribed] = useState(false);
+  const buttonSubscribe = useRef()
+  const auth = getAuth(firebaseApp);
+
+  const toggleSubscription = ()=>{
+    setSubscribed(true);
+  }
+
   return (
     <div className='footer-container'>
       <section className='footer-subscription'>
-        <p className='footer-subscription-heading'>Join the Adventure newsletter to receive
-        our best vacation details</p>
+        <p className='footer-subscription-heading'>Join our newsletter to receive
+        all the information</p>
         <p className='footer-subscription-text'>
             You can unsubscribe at any time.
         </p>
@@ -16,7 +27,7 @@ function Footer() {
             <form>
                 <input type="email" name="email" placeholder="Your Email" className="footer-input"></input>
             </form>
-            <Button buttonStyle="btn--outline"> Subscribe </Button>
+            <Button buttonStyle="btn--outline" ref={buttonSubscribe} onClick={toggleSubscription} className="sub-btn"> {subscribed ? "Subscription submitted succesfully" : "Subscribe"} </Button>
         </div>
       </section>
       <div class='footer-links'>
@@ -58,10 +69,10 @@ function Footer() {
         <div className='social-media-wrap'>
           <div className='footer-logo'>
             <Link to="/" className='social-logo'>
-              TRVL <i className='fab fa-typo3'></i>
+            Ambience<span className="nav-second-color">HUB</span> <i class="fas fa-headphones-alt nav-icon"></i>
             </Link>
           </div>
-          <small className='website-rights'> TRVL 2020</small>
+          <small className='website-rights'> AmbienceHUB 2022</small>
           <div class='social-icons'>
             <Link
               class='social-icon-link facebook'

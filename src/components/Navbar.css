@@ -10,6 +10,14 @@
   z-index: 999;
 }
 
+.nav-icon{
+  margin-left: 12px;
+}
+
+.nav-second-color{
+  color: #9d4edd;
+}
+
 .navbar-container {
   display: flex;
   justify-content: center;

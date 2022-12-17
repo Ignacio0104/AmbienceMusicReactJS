@@ -88,13 +88,13 @@ function FormAddVideo() {
             }
     }
     
-    const updateList = ()=>{
+    const updateList =async ()=>{
         
         if(!nameError&&!urlError&&!labelsError&&!pictureError&&!descriptionError)
         {
-            //addVideo();   
+            addVideo();   
             alert("Estoy aca")
-            /*try{  
+            try{  
                 alert("Estoy agregando")
                 await addDoc(collection(db,'videos'),{
                     name:nameText.current.value, 
@@ -106,7 +106,7 @@ function FormAddVideo() {
                 })
             }catch(err){
                 console.log(err)
-            }*/
+            }
         }
     }
 
@@ -155,36 +155,3 @@ function FormAddVideo() {
 
 export default FormAddVideo
 
-
-
-/*return (
-    <div className='form-main'>
-     <video src='/videos/video-form.mp4'  type="video/mp4"  autoPlay loop muted />
-        <div className='form-add-container'>
-            <form className='form-add'>
-                <input type="text" onBlur={validateName} className={nameError && "error-border"} ref={nameText} placeholder="name"/>
-                {nameError && <p className='error-label-left-top'>Minimun 6 characters</p>}
-                <input type="text" onBlur={validateUrl} className={urlError && "error-border"} ref={urlText} placeholder="url"></input>
-                {urlError && <p className='error-label-right-top'>Use a validate embed youtube link</p>}
-                <input type="text" onBlur={validateLabel} className={labelsError && "error-border"} ref={labelText} placeholder="labels"></input>
-                <i className="plus-btn fas fa-plus" onClick={addLabel}></i>
-                {labels.length > 0 ? 
-                (
-                    <div className='labels-container'>
-                        {labels.map((label)=> (<p> <i className="plus-btn fas fa-minus-circle" onClick={()=>deleteLabel(label)}></i> {label}</p>))}
-                    </div>
-                ):
-                (
-                    <div className='labels-container'>
-                        <p>There are no labels added</p>
-                    </div>
-                )}
-                <input type="text" onBlur={validatePicture} className={`picture-input ${pictureError && "error-border"}`} ref={pictureText} placeholder="picture"></input>
-                {pictureError && <p className='error-label-left-middle'>Link must begin with "https://" and be .jpg, .jpeg or .bmp</p>}
-                <textarea type="text" onBlur={validateDescription} className={`description-input ${descriptionError && "error-border"}` } ref={descriptionText} placeholder="description"></textarea>
-                {descriptionError && <p className='error-label-bottom'>Description can't be less than 30 characters</p>}
-                <button type='submit' onClick={validateFields}> Submit </button>
-            </form>
-        </div>
-    </div>
-  )*/

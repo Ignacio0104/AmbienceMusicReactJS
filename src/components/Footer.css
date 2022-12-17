@@ -134,6 +134,9 @@
     color: #fff;
     margin-bottom: 16px;
 }
+.nav-second-color{
+    color: #9d4edd;
+  }
 
 @media screen and (max-width: 820px){
     .footer-links{
