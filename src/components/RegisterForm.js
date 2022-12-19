@@ -145,7 +145,10 @@ function RegisterForm() {
     <div className='form-main'>
     <img className='background-register' src='images/background-registerform.jpg' alt='background'></img>
         <div className='form-add-container'>
-            <form className='form-add'>
+        {
+            register ?
+            (
+                <form className='form-add'>
                 <input type="text" onBlur={validateName} className={nameError && "error-border"} ref={nameText} placeholder="name"/>
                 <input type="text" onBlur={validateLastname} className={lastnameError && "error-border"} ref={lastnameText} placeholder="lastname"></input>
                 <p> {nameError && "Minimun 2 characters. No numbers allow"}</p>
@@ -181,7 +184,21 @@ function RegisterForm() {
                 </div>
                 
                 <button type='submit' disabled={allowSubmit ? false : true} onClick={validateFields}> Submit </button>
+                <p> Already have an account? Sing in <span className="click-text" onClick={()=>setRegister(false)}>here</span></p>
             </form>
+            ):
+            (
+                <form className='form-login'>
+                <input type="text" onBlur={validateName} className={nameError && "error-border"} ref={nameText} placeholder="name"/>
+                <p> {nameError && "Minimun 2 characters. No numbers allow"}</p>
+                <input type="text" onBlur={validateLastname} className={lastnameError && "error-border"} ref={lastnameText} placeholder="lastname"></input>           
+                <p> {lastnameError && "Minimun 3 characters. No numbers allow"}</p>           
+                <button type='submit' disabled={allowSubmit ? false : true} onClick={validateFields}> Login </button>
+                <p> Don't have an account? Sing up <span className="click-text" onClick={()=>setRegister(true)}>here</span></p>
+            </form>
+            )
+        }
+            
         </div>
     </div>
   )
