@@ -3,8 +3,8 @@ import { useDispatch } from '../store/StoreProvider';
 import "./RegisterForm.css"
 
 import  {firebaseApp}  from "../credentials";
-import {createUserWithEmailAndPassword, getAuth, signOut} from 'firebase/auth'
-import {getFirestore,collection,addDoc,getDocs,doc,deleteDoc,getDoc,setDoc} from "firebase/firestore"
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut} from 'firebase/auth'
+import {getFirestore,collection,addDoc,getDocs,doc,deleteDoc,getDoc,setDoc, query, where} from "firebase/firestore"
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
@@ -29,6 +29,8 @@ function RegisterForm() {
     const passwordTwoText = useRef();
     const genreFemBtn = useRef();
     const roleCheckbox = useRef();
+    const userNameText = useRef();
+    const passwordLoginText = useRef();
 
   const toogleVisibility = (e)=>{
     if(e.current.type==="text")
@@ -99,13 +101,32 @@ function RegisterForm() {
     }
 
     const enableButton = ()=>{
-        if(nameText.current.value.length >0 && lastnameText.current.value.length>0
-            && dateText.current.value.length >0 && passwordOneText.current.value.length >0)
-            {
-               setAllowSubmit(true);
-            }else{
-                setAllowSubmit(true);
-            }
+        if(register)
+        {
+            if(nameText.current.value.length >0 && lastnameText.current.value.length>0
+                && dateText.current.value.length >0 && passwordOneText.current.value.length >0)
+                {
+                   setAllowSubmit(true);
+                }else{
+                    setAllowSubmit(true);
+                }
+        }else{
+            setAllowSubmit(true);
+        }
+   
+    }
+
+    const loginRequest = async()=>{
+        let retorno = await signInWithEmailAndPassword(auth,userNameText.current.value,passwordLoginText.current.value)
+        try {
+            const q = query(collection(db, "users"), where("userId", "==", retorno.user.uid));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+              console.log(doc.id, " => ", doc.data());
+            });
+        } catch(error) {
+            console.log(error)
+        }
     }
     
     const submitRequest = async ()=>{
@@ -133,12 +154,18 @@ function RegisterForm() {
 
     const validateFields = (e)=>{
         e.preventDefault();
-        validateName();
-        validateLastname();
-        validateEmail();
-        validateDate();
-        validateEmail();
-        submitRequest();
+        if(register)
+        {
+            validateName();
+            validateLastname();
+            validateEmail();
+            validateDate();
+            validateEmail();
+            submitRequest();
+        }else{
+            loginRequest();
+        }
+
     }
     
   return (
@@ -184,17 +211,17 @@ function RegisterForm() {
                 </div>
                 
                 <button type='submit' disabled={allowSubmit ? false : true} onClick={validateFields}> Submit </button>
-                <p> Already have an account? Sing in <span className="click-text" onClick={()=>setRegister(false)}>here</span></p>
+                <h4> Already have an account? Sing in <span className="click-text" onClick={()=>setRegister(false)}>here</span></h4>
             </form>
             ):
             (
                 <form className='form-login'>
-                <input type="text" onBlur={validateName} className={nameError && "error-border"} ref={nameText} placeholder="name"/>
+                <input type="text" onBlur={enableButton} className={nameError && "error-border"} ref={userNameText} placeholder="Mail"/>
                 <p> {nameError && "Minimun 2 characters. No numbers allow"}</p>
-                <input type="text" onBlur={validateLastname} className={lastnameError && "error-border"} ref={lastnameText} placeholder="lastname"></input>           
+                <input type="password" onBlur={enableButton} className={lastnameError && "error-border"} ref={passwordLoginText} placeholder="Password"></input>           
                 <p> {lastnameError && "Minimun 3 characters. No numbers allow"}</p>           
                 <button type='submit' disabled={allowSubmit ? false : true} onClick={validateFields}> Login </button>
-                <p> Don't have an account? Sing up <span className="click-text" onClick={()=>setRegister(true)}>here</span></p>
+                <h4> Don't have an account? Sing up <span className="click-text" onClick={()=>setRegister(true)}>here</span></h4>
             </form>
             )
         }
