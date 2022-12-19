@@ -28,6 +28,7 @@ function RegisterForm() {
     const passwordOneText = useRef();
     const passwordTwoText = useRef();
     const genreFemBtn = useRef();
+    const roleCheckbox = useRef();
 
   const toogleVisibility = (e)=>{
     if(e.current.type==="text")
@@ -54,21 +55,21 @@ function RegisterForm() {
 
     const validateName = ()=>{
         enableButton();
-        if(/\D/.test(nameText.current.value) || nameText.current.value.length < 6)
+        if(/\d/.test(nameText.current.value) || nameText.current.value.length < 2)
         {
-            setNameError(false)
-        }else{
             setNameError(true)
+        }else{
+            setNameError(false)
         }          
     }
 
     const validateLastname = ()=>{
         enableButton();
-        if(/\D/.test(nameText.current.value)|| nameText.current.value.length <6)
+        if(/\d/.test(lastnameText.current.value)|| lastnameText.current.value.length <3)
         {
-            setLastnameError(false)
-        }else{
             setLastnameError(true)
+        }else{
+            setLastnameError(false)
         }          
     }
    
@@ -107,9 +108,9 @@ function RegisterForm() {
             }
     }
     
-    const submitRequest = async (e)=>{
-        e.preventDefault()
+    const submitRequest = async ()=>{
         let genre = genreFemBtn.current.checked ? "Female" : "Male";
+        let role = roleCheckbox.current.checked ? "admin" : "user";
         let idLogin =  await createUserWithEmailAndPassword(auth,emailText.current.value,passwordOneText.current.value);
         if(!nameError&&!lastnameError&&!emailError&&!dateError&&!passwordErrorOne&&!passwordErrorTwo)
         {
@@ -122,7 +123,7 @@ function RegisterForm() {
                     email: emailText.current.value,
                     dateOfBirth: dateText.current.value,
                     genre: genre,
-                    role: "admin"
+                    role: role
                 })
             }catch(err){
                 console.log(err)
@@ -142,13 +143,13 @@ function RegisterForm() {
     
   return (
     <div className='form-main'>
-     <video src='/videos/video-form.mp4'  type="video/mp4"  autoPlay loop muted />
+    <img className='background-register' src='images/background-registerform.jpg' alt='background'></img>
         <div className='form-add-container'>
             <form className='form-add'>
                 <input type="text" onBlur={validateName} className={nameError && "error-border"} ref={nameText} placeholder="name"/>
                 <input type="text" onBlur={validateLastname} className={lastnameError && "error-border"} ref={lastnameText} placeholder="lastname"></input>
-                <p> {nameError && "Minimun 6 characters. Must contain at least one letter"}</p>
-                <p> {lastnameError && "Minimun 6 characters. Must contain at least one letter"}</p>   
+                <p> {nameError && "Minimun 2 characters. No numbers allow"}</p>
+                <p> {lastnameError && "Minimun 3 characters. No numbers allow"}</p>   
                 <input type="email" onBlur={validateEmail} className={`email-input ${emailError && "error-border"}`} 
                 ref={emailText} placeholder="email"></input>
                 <p className='error-label-center'> {emailError && "Use a valid email address"}</p>     
@@ -173,8 +174,13 @@ function RegisterForm() {
                     <i onClick={()=>toogleVisibility(passwordTwoText)} class={`${passwordTwoVisible ? "fas fa-eye" : "fas fa-eye-slash" }`}></i>
                 </div>
                 <p> {passwordErrorOne && "Password can't be less than 8 characters"}<br/>{passwordEqualError && "Passwords do not match"}</p>
-                <p> {passwordErrorTwo && "Password can't be less than 8 characters"}</p>
-                <button type='submit' disabled={allowSubmit ? false : true} onClick={submitRequest}> Submit </button>
+                <p className='error-password-two'> {passwordErrorTwo && "Password can't be less than 8 characters"}</p>
+                <div className='input-admin'>
+                    <label>Admin</label>
+                    <input ref={roleCheckbox} type="checkbox"></input>
+                </div>
+                
+                <button type='submit' disabled={allowSubmit ? false : true} onClick={validateFields}> Submit </button>
             </form>
         </div>
     </div>
