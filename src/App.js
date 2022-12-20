@@ -12,6 +12,7 @@ import FormAdd from './components/pages/FormAdd';
 import RegisterForm from './components/RegisterForm';
 import  {firebaseApp}  from "./credentials";
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
+import Login from './components/pages/Login';
 
 const auth = getAuth(firebaseApp);
 
@@ -35,7 +36,7 @@ function App() {
           <Route path='/blog' exact element={<Blog/>}/>
           <Route path='/videos-main' exact element={<Videos/>}/>
           <Route path='/add-video' exact element={<FormAdd />}/>
-          <Route path='/sign-in' exact element={<RegisterForm/>}/>
+          <Route path='/sign-in' exact element={<Login/>}/>
         </Switch>
     </Router>
     </>

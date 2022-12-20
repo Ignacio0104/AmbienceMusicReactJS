@@ -93,9 +93,7 @@ function FormAddVideo() {
         if(!nameError&&!urlError&&!labelsError&&!pictureError&&!descriptionError)
         {
             addVideo();   
-            alert("Estoy aca")
             try{  
-                alert("Estoy agregando")
                 await addDoc(collection(db,'videos'),{
                     name:nameText.current.value, 
                     url:urlText.current.value,

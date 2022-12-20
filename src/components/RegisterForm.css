@@ -36,7 +36,7 @@
 .form-add input, textarea{
     padding: 5px;
     font-family: 'Montserrat', sans-serif;
-    background-color: #f5ebe0;
+    background-color: #fff;
     font-weight: bold;
  }
  
@@ -54,30 +54,6 @@
      font-weight: bold;
  }
  
-
-.form-login{
-    display: flex;
-    flex-direction: column;
-    padding: 30px; 
-    width: 400px;
-}
-
-.form-login input{
-    margin: 15px;
-    padding: 10px;
-    font-size: 15px;
-}
-
-.form-login button{
-    margin: 15px;
-    padding: 10px;
-    font-size: 15px;
-}
-
-.click-text{
-    text-decoration: underline;
-    cursor: pointer;
-}
 
 .labels-container{
     grid-column: 1/3;
