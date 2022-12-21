@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import LoginForm from '../LoginForm';
 import RegisterForm from '../RegisterForm';
 
-function Login() {
+function Login(props) {
     const [register, setRegister] = useState(false);
 
     const changeRegister = (boolean)=> setRegister(boolean)
@@ -13,7 +13,7 @@ function Login() {
         register?
         (<RegisterForm changeRegister={changeRegister}></RegisterForm>)
         :
-        (<LoginForm changeRegister={changeRegister}></LoginForm>)
+        (<LoginForm changeRegister={changeRegister} changeLogin={props.actionLogin}></LoginForm>)
       }
     </div>
   )

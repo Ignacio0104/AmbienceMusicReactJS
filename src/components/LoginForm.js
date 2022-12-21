@@ -47,6 +47,7 @@ function LoginForm(props) {
                 localStorage.setItem("email",user.email.stringValue);
                 localStorage.setItem("genre",user.genre.stringValue);
                 localStorage.setItem("role",user.role.stringValue);
+                props.changeLogin(true);
                 history("/");
             }
         })

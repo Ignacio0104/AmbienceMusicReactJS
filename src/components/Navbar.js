@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from './Button';
 import "./Navbar.css";
 
 function Navbar() {
 
     const [click, setClick] = useState(false);
-
     const [button, setButton] = useState(true)
+    const navigateTo = useNavigate()
 
     const handleClick = ()=>{
         setClick(!click);
@@ -24,6 +24,7 @@ function Navbar() {
             setButton(true);
         }
     };
+
     useEffect(() => {
         showButton();
       }, []);
@@ -58,12 +59,28 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className='nav-item'>
+                    {
+                        localStorage.getItem("userName") ?
+                        (
+                            <h1 className='nav-links-mobile' onClick={closeMobileMenu} style={{color:"white"}}>{`Welcome ${localStorage.getItem("userName")}`}</h1>
+                        ):     
                         <Link to="/sign-in" className='nav-links-mobile' onClick={closeMobileMenu}>
                             Sign in
                         </Link>
+                    }
+                   
                     </li>
                 </ul>
-                {button && <Button navigateTo="/sign-in"  buttonStyle="btn--outline" buttonSize="">SIGN IN</Button>}
+                {
+                    button && 
+                    (
+                        localStorage.getItem("userName") ?
+                        <h1 onClickCapture={()=>navigateTo("/profile")} style={{color:"white"}}>{`Welcome ${localStorage.getItem("userName")}`}</h1>
+                        :
+                        <Button navigateTo="/sign-in"  buttonStyle="btn--outline" buttonSize="">SIGN IN</Button>
+                    )
+                
+                }
             </div>
         </nav>
     </>

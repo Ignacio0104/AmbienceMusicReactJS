@@ -13,18 +13,17 @@ import RegisterForm from './components/RegisterForm';
 import  {firebaseApp}  from "./credentials";
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import Login from './components/pages/Login';
+import Profile from './components/pages/Profile';
 
 const auth = getAuth(firebaseApp);
 
 function App() {
-  /*const [usuario, setUsuario] = useState(null)  //VERIFICAR LOGUEO A BASE DE DATOS
-  onAuthStateChanged(auth,(usuarioFirebase)=>{
-    if(usuarioFirebase){
-      setUsuario(usuarioFirebase)
-    }else{
-      setUsuario(null)
-    }
-  })*/
+
+  const [userLoggedIn, setuserLoggedIn] = useState(false);
+
+  const changeLoggenInState = (boolean)=>{
+    setuserLoggedIn(boolean)
+  }
 
   return (
     <>
@@ -36,7 +35,8 @@ function App() {
           <Route path='/blog' exact element={<Blog/>}/>
           <Route path='/videos-main' exact element={<Videos/>}/>
           <Route path='/add-video' exact element={<FormAdd />}/>
-          <Route path='/sign-in' exact element={<Login/>}/>
+          <Route path='/sign-in' exact element={<Login actionLogin={changeLoggenInState}/>}/>
+          <Route path='/profile' exact element={<Profile/>}/>
         </Switch>
     </Router>
     </>
