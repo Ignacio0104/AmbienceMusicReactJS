@@ -22,28 +22,8 @@ function Home(props){
         setIsLoading(false)
     }
 
-    
-   /* const [registro, setRegistro] = useState(false);  //REGISTRO A BASE DE DATOS
-
-    const handleSubmit= async(e)=>{
-        e.preventDefault();
-        const correo = e.target.email.value;
-        const clave = e.target.clave.value;
-        if(registro)
-        {
-            await createUserWithEmailAndPassword(auth,correo,clave);
-        }else{
-            await signInWithEmailAndPassword(auth,correo,clave)
-        }
-    }*/
     return(
         <>
-            {/* <h1>Hola {props.correo.usuario?.mail}</h1>
-            <form onSubmit={handleSubmit}>
-                <input id="email" type="email"></input>
-                <input id="clave" type="text"></input>
-                <button type="submit">Submit </button>
-            </form> */}
             <Spinner loading={endLoading}></Spinner>
             <HeroSection/>
             {

@@ -15,7 +15,11 @@ function Navbar() {
 
     const closeMobileMenu = (path)=>{
         setClick(false);
-        navigateTo(path)
+       // navigateTo(path);           
+    }
+    const redirectToPath = ()=>{
+        setClick(false);
+        navigateTo("/profile"); 
     }
     
     const showButton = ()=>{
@@ -45,17 +49,17 @@ function Navbar() {
                 </div>
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     <li className='nav-item'>
-                        <Link to="/" className='nav-links' onClick={()=>closeMobileMenu("/")}>
+                        <Link to="/" className='nav-links' onClick={closeMobileMenu}>
                             Home
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to="/blog" className='nav-links' onClick={()=>closeMobileMenu("/blog")}>
+                        <Link to="/blog" className='nav-links' onClick={closeMobileMenu}>
                             Blog
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to="/videos-main" className='nav-links' onClick={()=>closeMobileMenu("/videos")}>
+                        <Link to="/videos-main" className='nav-links' onClick={closeMobileMenu}>
                             Videos
                         </Link>
                     </li>
@@ -63,7 +67,7 @@ function Navbar() {
                     {
                         localStorage.getItem("userName") ?
                         (
-                            <h2 className='nav-links-mobile' onClick={()=>closeMobileMenu("/profile")} style={{color:"white"}}>Profile</h2>
+                            <h2 className='nav-links-mobile' onClick={redirectToPath} style={{color:"white"}}>Profile</h2>
                         ):     
                         <Link to="/sign-in" className='nav-links-mobile' onClick={closeMobileMenu}>
                             Sign in
