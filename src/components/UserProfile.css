@@ -1,6 +1,9 @@
 .profile-container{
     display: grid;
     grid-template-columns: repeat(2,500px);
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
 .profile-pic-container{
@@ -8,12 +11,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px;
+    padding: 15px;
+    border-right: 1px solid black;
+    height: 100%;
 }
 
 .profile-pic-container p{
     padding: 30px;
     font-size: 25px;
+    cursor: pointer;
 }
 
 .profile-info-container{
@@ -22,4 +28,8 @@
 
 .profile-info-container h2{
     margin-bottom: 50px;
+}
+
+.profile-info-container h4{
+    margin: 20px 0px 20px 0px
 }

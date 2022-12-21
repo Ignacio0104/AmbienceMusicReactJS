@@ -36,7 +36,7 @@ function App() {
           <Route path='/videos-main' exact element={<Videos/>}/>
           <Route path='/add-video' exact element={<FormAdd />}/>
           <Route path='/sign-in' exact element={<Login actionLogin={changeLoggenInState}/>}/>
-          <Route path='/profile' exact element={<Profile/>}/>
+          <Route path='/profile' exact element={<Profile actionLogin={changeLoggenInState}/>}/>
         </Switch>
     </Router>
     </>

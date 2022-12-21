@@ -1,10 +1,10 @@
 import React from 'react'
 import UserProfile from '../UserProfile'
 
-function Profile() {
+function Profile(props) {
   return (
     <div>
-      <UserProfile></UserProfile>
+      <UserProfile changeLogin={props.actionLogin}></UserProfile>
     </div>
   )
 }
