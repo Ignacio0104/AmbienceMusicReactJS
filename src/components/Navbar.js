@@ -13,8 +13,9 @@ function Navbar() {
         setClick(!click);
     }
 
-    const closeMobileMenu = ()=>{
+    const closeMobileMenu = (path)=>{
         setClick(false);
+        navigateTo(path)
     }
     
     const showButton = ()=>{
@@ -44,17 +45,17 @@ function Navbar() {
                 </div>
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     <li className='nav-item'>
-                        <Link to="/" className='nav-links' onClick={closeMobileMenu}>
+                        <Link to="/" className='nav-links' onClick={()=>closeMobileMenu("/")}>
                             Home
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to="/blog" className='nav-links' onClick={closeMobileMenu}>
+                        <Link to="/blog" className='nav-links' onClick={()=>closeMobileMenu("/blog")}>
                             Blog
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to="/videos-main" className='nav-links' onClick={closeMobileMenu}>
+                        <Link to="/videos-main" className='nav-links' onClick={()=>closeMobileMenu("/videos")}>
                             Videos
                         </Link>
                     </li>
@@ -62,7 +63,7 @@ function Navbar() {
                     {
                         localStorage.getItem("userName") ?
                         (
-                            <h1 className='nav-links-mobile' onClick={closeMobileMenu} style={{color:"white"}}>{`Welcome ${localStorage.getItem("userName")}`}</h1>
+                            <h2 className='nav-links-mobile' onClick={()=>closeMobileMenu("/profile")} style={{color:"white"}}>Profile</h2>
                         ):     
                         <Link to="/sign-in" className='nav-links-mobile' onClick={closeMobileMenu}>
                             Sign in
@@ -75,7 +76,7 @@ function Navbar() {
                     button && 
                     (
                         localStorage.getItem("userName") ?
-                        <h1 onClickCapture={()=>navigateTo("/profile")} style={{color:"white"}}>{`Welcome ${localStorage.getItem("userName")}`}</h1>
+                        <i onClick={()=>navigateTo("/profile")} className="fas fa-user-circle profile-icon"></i>
                         :
                         <Button navigateTo="/sign-in"  buttonStyle="btn--outline" buttonSize="">SIGN IN</Button>
                     )

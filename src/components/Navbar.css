@@ -42,6 +42,12 @@
   font-size: 1.8rem;
 }
 
+.profile-icon{
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+
 .nav-menu {
   display: grid;
   grid-template-columns: repeat(4, auto);
