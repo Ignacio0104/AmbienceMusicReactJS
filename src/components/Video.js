@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Video.css"
+import { useDispatch } from '../store/StoreProvider';
 
 function Video(props) {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        increaseViewsByOne();
+    }, [])
+
+    const increaseViewsByOne = ()=>{
+        dispatch(
+            {
+              type: "INCREASE_VIEWS",
+              payload:{
+                id: props.video[0].id
+              }
+            }
+          )
+    }
+    
   return (
-        <div className="videoPage" >
+        <div className="videoPage" onLoad={console.log(props.video)}>
             <div className="video-container">
             <div className="video-item">
                 <div className="video-info">

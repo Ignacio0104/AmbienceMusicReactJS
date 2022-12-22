@@ -52,7 +52,7 @@ const validateLastname = ()=>{
     setAllowSubmit(true);
 }
 const validateDate = ()=>{
-    if(dateTextRef.current.value > new Date().getDate())
+    if(dateTextRef.current.value > new Date().getDate() || dateTextRef.current.value === "")
     {
         setDateError(true)
     }else{
@@ -91,11 +91,9 @@ const validateDate = ()=>{
     }
     const toogleEditMode = ()=>{
       setAllowSubmit(false);
-      setEditMode(!editMode);
-      if(!editMode)
-      {
-        setError(false)
-      }
+      setEditMode(!editMode); 
+      setError(false)
+      
     }
 
     const logout = ()=>{     
@@ -120,11 +118,11 @@ const validateDate = ()=>{
         </div>
         <div className='profile-info-container'>
           <div className='profile-info-title'>
-            <h2>{editMode ? <input onBlur={validateName} ref={nameTextRef} placeholder="Name"  type="text"></input> : user.name + " "} 
-            {editMode ? <input onInput={validateLastname} ref={lastnameTextRef} placeholder="Lastname"  type="text"></input> : user.lastname} </h2>
+            <h2>{editMode ? <input onBlur={validateName} ref={nameTextRef} placeholder="Name" defaultValue={user.name}  type="text"></input> : user.name + " "} 
+            {editMode ? <input onInput={validateLastname} ref={lastnameTextRef} placeholder="Lastname" defaultValue={user.lastname} type="text"></input> : user.lastname} </h2>
             <i onClick={toogleEditMode} style={{cursor:"pointer"}} class="fas fa-edit"></i>    
           </div> 
-          <h4> Date of Birth: {editMode ? <input onBlur={validateDate} ref={dateTextRef} type="date"></input> :  user.dateOfBirth}</h4>
+          <h4> Date of Birth: {editMode ? <input onBlur={validateDate} defaultValue={user.dateOfBirth} ref={dateTextRef} type="date"></input> :  user.dateOfBirth}</h4>
           <h4> Email: {user.email}</h4>
            {error && <p>Please verify the entered information</p>}
           {
@@ -132,7 +130,7 @@ const validateDate = ()=>{
             (
               <div className='button-container'>
                 <button onClick={updateRegister} disabled={!allowSubmit} style={{cursor : allowSubmit ? "pointer" : "default"}} type="submit"> Confirm</button>
-                <button onClick={updateRegister}> Cancel </button>
+                <button onClick={toogleEditMode}> Cancel </button>
               </div>
             )
           }

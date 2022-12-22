@@ -6,7 +6,8 @@ const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 const types = {
     ADD: "ADD",
     UPDATE_ALL : "UPDATE_ALL",
-    DELETE : "DELETE"
+    DELETE : "DELETE",
+    INCREASE_VIEWS: "INCREASE_VIEWS"
 }
 
 const initialStore = [{
@@ -89,8 +90,16 @@ const storeReducer = (state, action) => {
             state= action.payload.list;
             return state;
         case types.DELETE:
-            alert("Estoy");
             return state.filter((video)=>video.id!==action.payload.id);
+        case types.INCREASE_VIEWS:
+            return state.map((video)=>
+            (video.id===action.payload.id)
+            ?
+            {
+                ...video,
+                views: video.views++
+            }:
+            video)
         default:
             return state;
     }
