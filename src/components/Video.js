@@ -1,15 +1,20 @@
 import React, { useEffect } from 'react'
 import "./Video.css"
-import { useDispatch } from '../store/StoreProvider';
+import { useDispatch, useStore } from '../store/StoreProvider';
+import  {firebaseApp}  from "../credentials";
+import { doc, getFirestore, updateDoc } from 'firebase/firestore';
 
 function Video(props) {
     const dispatch = useDispatch();
+    const state = useStore();
+    const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
     useEffect(() => {
         increaseViewsByOne();
     }, [])
 
-    const increaseViewsByOne = ()=>{
+    const increaseViewsByOne = async ()=>{
+      let views = props.video[0].views + 1
         dispatch(
             {
               type: "INCREASE_VIEWS",
@@ -18,6 +23,10 @@ function Video(props) {
               }
             }
           )
+          const videoReference = doc(db, "videos", props.video[0].id);
+          await updateDoc(videoReference, {
+               views: views
+             });
     }
     
   return (
