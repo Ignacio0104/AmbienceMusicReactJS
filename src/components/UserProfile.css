@@ -38,6 +38,14 @@
     
 }
 
+.profile-pic-container span{
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.profile-pic-container span:hover{
+    font-weight: bold;
+}
+
 .profile-info-container{
     padding: 20px;
 }
