@@ -12,6 +12,8 @@ function Cards(props) {
   const videos = useStore();
   const dispatch = useDispatch();
   const filterText = useRef();
+  
+  videos.sort((vOne,vTwo)=>vTwo.views-vOne.views)
 
   const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 

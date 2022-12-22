@@ -30,7 +30,7 @@ function Video(props) {
     }
     
   return (
-        <div className="videoPage" onLoad={console.log(props.video)}>
+        <div className="videoPage">
             <div className="video-container">
             <div className="video-item">
                 <div className="video-info">
