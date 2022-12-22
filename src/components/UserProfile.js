@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./UserProfile.css"
 import  {firebaseApp}  from "../credentials";
@@ -9,6 +9,18 @@ import {getFirestore,collection,addDoc, query, getDocs, where, doc, updateDoc} f
 const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
 function UserProfile(props) {
+  const [editMode, setEditMode] = useState(false);
+  const [allowSubmit, setAllowSubmit] = useState(false)
+  const [error, setError] = useState(false)
+  const [nameError, setNameError] = useState(false);
+  const [lastnameError, setLastnameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [dateError, setDateError] = useState(false);
+  const dateTextRef = useRef();
+  const emailTextRef = useRef();
+  const nameTextRef = useRef();
+  const lastnameTextRef = useRef();
+
   const history = useNavigate();
     const user = {
         name: localStorage.getItem("userName"),
@@ -20,12 +32,61 @@ function UserProfile(props) {
         id: localStorage.getItem("userId"),
         docId:localStorage.getItem("docId")
     }
-    
-    const update = async ()=>{
-      const userReference = doc(db, "users", user.docId);
-      await updateDoc(userReference, {
-        name: "Ignacio"
-      });
+
+  const validateName = ()=>{
+    if(/\d/.test(nameTextRef.current.value) || nameTextRef.current.value.length < 2)
+    {
+        setNameError(true)
+    }else{
+        setNameError(false)
+    }     
+    setAllowSubmit(true);     
+}
+
+const validateLastname = ()=>{
+    if(/\d/.test(lastnameTextRef.current.value)|| lastnameTextRef.current.value.length <3)
+    {
+        setLastnameError(true)
+    }else{
+        setLastnameError(false)
+    }          
+    setAllowSubmit(true);
+}
+const validateDate = ()=>{
+    if(dateTextRef.current.value > new Date().getDate())
+    {
+        setDateError(true)
+    }else{
+        setDateError(false)
+    }
+    setAllowSubmit(true);
+}
+
+    const updateRegister = async (e)=>{
+      e.preventDefault();
+      validateDate();
+      validateName();
+      validateLastname();
+      if(!nameError&&!lastnameError&&!emailError&&!dateError)
+      {
+        const userReference = doc(db, "users", user.docId);
+        localStorage.setItem("userName",nameTextRef.current.value);
+        localStorage.setItem("lastname",lastnameTextRef.current.value);
+        localStorage.setItem("dateOfBirth",dateTextRef.current.value)
+        await updateDoc(userReference, {
+          name: nameTextRef.current.value,
+          lastname: lastnameTextRef.current.value,
+          dateOfBirth: dateTextRef.current.value
+        });
+        setError(false)
+        toogleEditMode();
+      }else{
+        setError(true);       
+      }    
+    }
+    const toogleEditMode = ()=>{
+      setAllowSubmit(false)
+      setEditMode(!editMode);
     }
 
     const logout = ()=>{     
@@ -42,11 +103,24 @@ function UserProfile(props) {
           <p onClick={logout}>Logout <i class="fas fa-sign-out-alt"></i></p>
         </div>
         <div className='profile-info-container'>
-          <h2> {user.name} {user.lastname}</h2>
-          <h4> Date of Birth: {user.dateOfBirth}</h4>
+          <div className='profile-info-title'>
+            <h2>{editMode ? <input onBlur={validateName} ref={nameTextRef} placeholder="Name" type="text"></input> : user.name + " "} 
+            {editMode ? <input onInput={validateLastname} ref={lastnameTextRef} placeholder="Lastname" type="text"></input> : user.lastname} </h2>
+            <i onClick={toogleEditMode} class="fas fa-edit"></i>    
+          </div> 
+          <h4> Date of Birth: {editMode ? <input onBlur={validateDate} ref={dateTextRef} type="date"></input> :  user.dateOfBirth}</h4>
           <h4> Email: {user.email}</h4>
+           {error && <p>Please verify the entered information</p>}
+          {
+            editMode &&
+            (
+              <div className='button-container'>
+                <button onClick={updateRegister} disabled={!allowSubmit} style={{cursor : allowSubmit ? "pointer" : "default"}} type="submit"> Confirm</button>
+                <button onClick={updateRegister}> Cancel </button>
+              </div>
+            )
+          }
         </div>
-        <button onClick={update}> Check </button>
       </div> 
     </div>
   )

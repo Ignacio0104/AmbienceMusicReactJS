@@ -1,6 +1,6 @@
 .profile-container{
     display: grid;
-    grid-template-columns: repeat(2,500px);
+    grid-template-columns: repeat(2,auto);
     margin: 20px;
     border-radius: 10px;
     border: 1px solid;
@@ -15,7 +15,7 @@
     color: #f8edeb;
 }
 
-.profile-container p, h2, h4{
+.profile-container p, h2, h4,input{
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -50,6 +50,17 @@
     margin: 20px 0px 20px 0px
 }
 
+.profile-info-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-info-title input{
+    padding: 10px;
+    margin: 10px;
+}
+
+
 .background-profile{
     object-fit: fill;
     width: 100%;
@@ -63,6 +74,26 @@
     height: 100%;
     position: absolute;
 }
+
+.button-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.button-container button{
+    margin: 10px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    font-weight: bold;
+    color: black;
+    border: 1px solid #f8edeb;
+    cursor: pointer;
+}
+
+.error-border{
+    border: 2px solid red;
+}
+
+
 
 @media only screen and (max-width: 945px) {
     .profile-container{
@@ -113,6 +144,7 @@
         margin-bottom: 20px;
         margin: 10px 0px 10px 0px
     }
+
 
     .background-profile{
         object-fit: cover;
