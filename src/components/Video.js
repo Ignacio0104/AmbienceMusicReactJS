@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Video.css"
 import { useDispatch, useStore } from '../store/StoreProvider';
 import  {firebaseApp}  from "../credentials";
 import { doc, getFirestore, updateDoc } from 'firebase/firestore';
+import PomodoroClock from './PomodoroClock';
 
 function Video(props) {
     const dispatch = useDispatch();
+    const [pomodoroVisible, setPomodoroVisible] = useState(false)
     const state = useStore();
     const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
     useEffect(() => {
         increaseViewsByOne();
     }, [])
+
+    const tooglePomodoro = ()=>{
+      setPomodoroVisible(!pomodoroVisible)
+    }
 
     const increaseViewsByOne = async ()=>{
       let views = props.video[0].views + 1
@@ -39,6 +45,10 @@ function Video(props) {
                     <p>{props.video[0].description}</p>
                 </div>
             </div>
+            <button onClick={tooglePomodoro}>Pomodoro </button>
+            {
+              pomodoroVisible && <PomodoroClock></PomodoroClock>
+            }       
         </div>
 
     </div>

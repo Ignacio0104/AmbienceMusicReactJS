@@ -1,0 +1,14 @@
+.pomodoro-header{
+    display: flex;
+    justify-content: space-around
+}
+.pomodoro-header input{
+    width: 50px;
+    margin-left: 20px;
+}
+
+.pomodoro-main{
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}

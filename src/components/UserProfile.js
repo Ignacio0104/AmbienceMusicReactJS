@@ -5,6 +5,8 @@ import "./UserProfile.css"
 import  {firebaseApp}  from "../credentials";
 import {createUserWithEmailAndPassword, getAuth} from 'firebase/auth'
 import {getFirestore, doc, updateDoc} from "firebase/firestore"
+import { useStore } from '../store/StoreProvider';
+import CardItem from './CardItem';
 
 const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
@@ -19,6 +21,8 @@ function UserProfile(props) {
   const dateTextRef = useRef();
   const nameTextRef = useRef();
   const lastnameTextRef = useRef();
+
+  const videos = useStore();
 
   const history = useNavigate();
     const user = {
