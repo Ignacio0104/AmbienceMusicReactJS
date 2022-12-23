@@ -12,3 +12,15 @@
     justify-content: center;
     margin: 30px;
 }
+
+.progress-bar{
+    width: 210px;
+    height: 30px;
+    background-color: green;
+}
+
+.progress__fill{
+    width: 0%;
+    height: 100%;
+    background-color: blue;
+}
