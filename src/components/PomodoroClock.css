@@ -1,26 +1,81 @@
 .pomodoro-header{
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
 }
 .pomodoro-header input{
     width: 50px;
-    margin-left: 20px;
 }
 
-.pomodoro-main{
+.clock-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: 1px solid #dfe7fd;
+    border-radius: 100%;
+    padding: 50px;
+    background-color: #cddafd;
+    box-shadow: 5px 3px 3px #fff1e6
+}
+
+.session-type{
     display: flex;
     justify-content: center;
-    margin: 30px;
+    margin-bottom: 10px;
+    font-size: 15px;
 }
 
+.pomodoro-minutes{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    font-size: 40px;
+    margin-bottom: 15px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+}
+
+.clock-container{
+    display: flex;
+    justify-content: center;
+}
+
+.pomodoro-time{
+    display: flex;
+    flex-direction: column;
+}
+
+.pomodoro-time label{
+    font-family: 'Montserrat', sans-serif;
+}
 .progress-bar{
     width: 210px;
-    height: 30px;
-    background-color: green;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.11);
 }
 
 .progress__fill{
     width: 0%;
     height: 100%;
-    background-color: blue;
+    background: linear-gradient(153deg, rgba(90,218,244,0.46262254901960786) 4%, rgba(118,92,237,0.48503151260504207) 46%, rgba(75,6,131,0.4066001400560224) 91%);
+    transition: 0.8s;
 }
+
+.input-pomodoro{
+    background:transparent;
+    border-bottom: 1px solid black;
+    font-size: 20px;
+    transition: 0.5s ease-in-out;
+    margin: 10px 0;
+    font-size: 18px;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.11);
+    border: none;
+    color: azure;
+  }
+  
+.input-pomodoro:focus{
+   outline: none;
+   border-bottom: 1px solid #5e548e;
+   transition: 0.8s;
+  }

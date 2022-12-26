@@ -20,6 +20,9 @@ function PomodoroClock() {
     setClockActive(true);
     setTimerMinutes(minutesText.current.value-1);
     setBreakMinutes(breakMinutesText.current.value-1);
+    setsText.current.disabled="true";
+    minutesText.current.disabled="true";
+    breakMinutesText.current.disabled="true";
     setTimerSeconds(59);
   }
 
@@ -35,9 +38,6 @@ function PomodoroClock() {
       percentage= Math.ceil((secondsAcumulator / totalTimeInSeconds) * 100);
       
     }
-
-    console.log(`Total = ${totalTimeInSeconds}`)
-    console.log(`-- Paso ${secondsAcumulator}`)
     setProgress(percentage);
   }
 
@@ -62,7 +62,7 @@ function PomodoroClock() {
         setSecondsAcumulator(secondsAcumulator+1);
       }
       calulatePercentage();
-    },100)
+    },1000)
   }
 
 
@@ -89,19 +89,30 @@ function PomodoroClock() {
         setSecondsAcumulator(secondsAcumulator+1);
       }
       calulatePercentage();
-    },100)
+    },1000)
   }
 
   const stopClock = ()=>{
-    setClockActive(false)
+    setClockActive(!clockActive);
+    setTimerSeconds(timerSeconds-1);
+  }
+
+  const resetClock = () =>{
+    setsText.current.disabled="false";
+    minutesText.current.disabled="false";
+    breakMinutesText.current.disabled="false";
+    setTimerSeconds(0);
+    setProgress(0)
+    setClockActive(false);
+    setBreakMinutes(0);  
+    setTimerMinutes(0);  
+    setNumberOfSets(0);  
+    setSecondsAcumulator(0);
   }
 
   useEffect(() => {
     if(clockActive)
     {
-      /*minutesText.current.disabled="true";
-      breakMinutesText.current.disabled="true";
-      setsText.current.disabled="true";*/
       if(numberOfSets > 0)
       {
         if(focus)
@@ -112,9 +123,6 @@ function PomodoroClock() {
         }
       }
     }else{
-      /*minutesText.current.disabled="false";
-      breakMinutesText.current.disabled="false";
-      setsText.current.disabled="false";*/
     }
   }, [timerSeconds])
   
@@ -124,38 +132,40 @@ function PomodoroClock() {
       <div className='pomodoro-header'>
         <div  className='pomodoro-time'>
           <label>Focus time</label>
-          <input ref={minutesText} type="number" min="0"></input>
+          <input ref={minutesText} className="input-pomodoro" type="number" min="0"></input>
         </div>
         <div className='pomodoro-time'>
           <label>Break time</label>
-          <input ref={breakMinutesText} type="number" min="0"></input>
+          <input ref={breakMinutesText} className="input-pomodoro" type="number" min="0"></input>
         </div>
         <div className='pomodoro-time'>
           <label>Sets</label>
-          <input ref={setsText} type="number" min="0"></input>
+          <input ref={setsText} className="input-pomodoro" type="number" min="0"></input>
         </div>
       </div>
       <div className='pomodoro-main'>
-      <h2> Set number: {numberOfSets}</h2><br></br>
-      {
-        focus ?
-        (<div>
-          <h2>Focus time</h2>
-          <h2>{timerMinutes} : {timerSeconds}</h2>
-        </div>)
-        :
-        (<div>
-          <h2>Break time</h2>
-          <h2>{breakMinutes} : {timerSeconds}</h2>
-        </div>)      
-      }
-        <div className='progress-bar'>
-          <div className='progress__fill' style={{width: `${progress}%`}}></div>
-        </div>
+          <h2 className='set-container'> Session: {numberOfSets}</h2>
+          <div className='clock-container'>
+          {
+            focus ?
+            (<div>
+              <h2 className='session-type'>Focus time</h2>
+              <h2 className='pomodoro-minutes'>{ timerMinutes < 10 ?  `0${timerMinutes}` : timerMinutes} : { timerSeconds < 10 ?  `0${timerSeconds}` : timerSeconds}</h2>
+            </div>)
+            :
+            (<div>
+              <h2 className='session-type'>Break time</h2>
+              <h2 className='pomodoro-minutes'>{ breakMinutes < 10 ?  `0${breakMinutes}` : breakMinutes} : { timerSeconds < 10 ?  `0${timerSeconds}` : timerSeconds}</h2>
+            </div>)      
+          }
+            <div className='progress-bar'>
+              <div className='progress__fill' style={{width: `${progress}%`}}></div>
+            </div>
+          </div>
       </div>
       <button onClick={runClock}>Start</button>
       <button onClick={stopClock}>Pause</button>
-      <button onClick={stopClock}>Stop</button>
+      <button onClick={resetClock}>Stop</button>
     </div>
   )
 }
