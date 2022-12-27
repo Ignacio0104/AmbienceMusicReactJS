@@ -172,13 +172,15 @@ function PomodoroClock() {
       <div className='pomodoro-button-container'>
       {!inputDisabled && 
       (<button onClick={runClock} onMouseLeave={()=>showIcons(0,false)} onMouseEnter={()=>showIcons(0,true)} 
-      className="pomodoro-start-btn">{iconVisible[0] ? <i className="fas fa-play"></i> : "Start"}</button>)}    
+      className="pomodoro-start-btn">{iconVisible[0] ? <i className="fas fa-play"></i> : "Start"}</button>)} 
+  
+      {inputDisabled &&
         <button onClick={stopClock} onMouseLeave={()=>showIcons(1,false)} onMouseEnter={()=>showIcons(1,true)} className="pomodoro-pause-btn">
         {iconVisible[1] ? clockActive ?  <i class="fas fa-pause"></i> : <i className="fas fa-play"></i> :
         clockActive ? "Pause" : "Resume"}
-        </button>
-      {!clockActive&& 
-      (<button onClick={resetClock} onMouseLeave={()=>showIcons(2,false)} onMouseEnter={()=>showIcons(2,true)} 
+        </button>}   
+      {inputDisabled  &&
+        !clockActive &&(<button onClick={resetClock} onMouseLeave={()=>showIcons(2,false)} onMouseEnter={()=>showIcons(2,true)} 
       className="pomodoro-stop-btn">{iconVisible[2] ? <i class="fas fa-stop"></i>: "Stop"}</button>)}
       </div>
     </div>
