@@ -21,7 +21,8 @@
     margin-top: 3vh;
     border-radius: 10px;
     background: rgb(72,202,228);
-    background: linear-gradient(153deg, rgba(72,202,228,1) 4%, rgba(0,119,182,1) 46%, rgba(11,65,134,0.7063200280112045) 91%);
+    background: linear-gradient(153deg, rgba(72,202,228,1) 4%, rgba(0,119,182,1) 46%,
+     rgba(11,65,134,0.7063200280112045) 91%);
     color: #fff;
 }
 

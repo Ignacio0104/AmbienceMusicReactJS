@@ -12,7 +12,7 @@ video{
     position: absolute;
 }
 
-.form-add-container{
+.form-addVideo-container{
     display: flex;
     justify-content: center;
     border: 1px solid #edede9;;
@@ -20,6 +20,7 @@ video{
     margin: auto;
     margin-top: 3vh;
     border-radius: 10px;
+    background-color: green;
     background: linear-gradient(149deg, rgba(213,189,175,1) 4%, 
     rgba(227,213,202,0.76234243697479) 46%, rgba(240,234,227,1) 91%);
 }

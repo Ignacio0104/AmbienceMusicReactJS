@@ -19,6 +19,15 @@
     box-shadow: 5px 3px 3px #fff1e6
 }
 
+.set-container{
+    font-size: 20px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    padding: 5px;
+    border: 1px solid black;
+}
+
 .session-type{
     display: flex;
     justify-content: center;
@@ -79,3 +88,32 @@
    border-bottom: 1px solid #5e548e;
    transition: 0.8s;
   }
+
+.pomodoro-button-container{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.pomodoro-button-container button{
+    padding:10px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 15px;
+    border-radius: 7px;
+    border-style: none;
+    color: #0d1b2a;
+    cursor: pointer;
+    width: 80px;
+}
+
+.pomodoro-start-btn{
+    background-color: #a8dadc;
+}
+
+.pomodoro-stop-btn{
+    background-color: #e63946;
+}
+
+.pomodoro-pause-btn{
+    background-color: #ffbe0b;
+}

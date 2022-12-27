@@ -121,7 +121,7 @@ function FormAddVideo() {
   return (
     <div className='form-main'>
      <video src='/videos/video-form.mp4'  type="video/mp4"  autoPlay loop muted />
-        <div className='form-add-container'>
+        <div className='form-addVideo-container'>
             <form className='form-add'>
                 <input type="text" onBlur={validateName} className={nameError && "error-border"} ref={nameText} placeholder="name"/>
                 <input type="text" onBlur={validateUrl} className={urlError && "error-border"} ref={urlText} placeholder="url"></input>

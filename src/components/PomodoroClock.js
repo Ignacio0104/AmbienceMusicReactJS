@@ -6,9 +6,11 @@ function PomodoroClock() {
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [breakMinutes, setBreakMinutes] = useState(0);
   const [numberOfSets, setNumberOfSets] = useState(0);
+  const [iconVisible, setIconVisible] = useState([false,false,false])
   const [secondsAcumulator, setSecondsAcumulator] = useState(0)
   const [progress, setProgress] = useState(0)
-  const [clockActive, setClockActive] = useState(false)
+  const [clockActive, setClockActive] = useState(false);
+  const [inputDisabled, setInputDisabled] = useState(false)
   const [focus, setFocus] = useState(false);
   const minutesText = useRef();
   const breakMinutesText = useRef()
@@ -20,9 +22,7 @@ function PomodoroClock() {
     setClockActive(true);
     setTimerMinutes(minutesText.current.value-1);
     setBreakMinutes(breakMinutesText.current.value-1);
-    setsText.current.disabled="true";
-    minutesText.current.disabled="true";
-    breakMinutesText.current.disabled="true";
+    setInputDisabled(true)
     setTimerSeconds(59);
   }
 
@@ -92,15 +92,21 @@ function PomodoroClock() {
     },1000)
   }
 
+  const showIcons = (index,boolean)=>{
+      let icons = [...iconVisible];
+      let iconToChange = {...icons[index]};
+      iconToChange = boolean;
+      icons[index] = iconToChange;
+      setIconVisible(icons);
+  }
+
   const stopClock = ()=>{
     setClockActive(!clockActive);
     setTimerSeconds(timerSeconds-1);
   }
 
   const resetClock = () =>{
-    setsText.current.disabled="false";
-    minutesText.current.disabled="false";
-    breakMinutesText.current.disabled="false";
+    setInputDisabled(false)
     setTimerSeconds(0);
     setProgress(0)
     setClockActive(false);
@@ -132,15 +138,15 @@ function PomodoroClock() {
       <div className='pomodoro-header'>
         <div  className='pomodoro-time'>
           <label>Focus time</label>
-          <input ref={minutesText} className="input-pomodoro" type="number" min="0"></input>
+          <input ref={minutesText} className="input-pomodoro" disabled={inputDisabled} type="number" min="0"></input>
         </div>
         <div className='pomodoro-time'>
           <label>Break time</label>
-          <input ref={breakMinutesText} className="input-pomodoro" type="number" min="0"></input>
+          <input ref={breakMinutesText} className="input-pomodoro" disabled={inputDisabled} type="number" min="0"></input>
         </div>
         <div className='pomodoro-time'>
           <label>Sets</label>
-          <input ref={setsText} className="input-pomodoro" type="number" min="0"></input>
+          <input ref={setsText} className="input-pomodoro" disabled={inputDisabled} type="number" min="0"></input>
         </div>
       </div>
       <div className='pomodoro-main'>
@@ -163,9 +169,18 @@ function PomodoroClock() {
             </div>
           </div>
       </div>
-      <button onClick={runClock}>Start</button>
-      <button onClick={stopClock}>Pause</button>
-      <button onClick={resetClock}>Stop</button>
+      <div className='pomodoro-button-container'>
+      {!inputDisabled && 
+      (<button onClick={runClock} onMouseLeave={()=>showIcons(0,false)} onMouseEnter={()=>showIcons(0,true)} 
+      className="pomodoro-start-btn">{iconVisible[0] ? <i className="fas fa-play"></i> : "Start"}</button>)}    
+        <button onClick={stopClock} onMouseLeave={()=>showIcons(1,false)} onMouseEnter={()=>showIcons(1,true)} className="pomodoro-pause-btn">
+        {iconVisible[1] ? clockActive ?  <i class="fas fa-pause"></i> : <i className="fas fa-play"></i> :
+        clockActive ? "Pause" : "Resume"}
+        </button>
+      {!clockActive&& 
+      (<button onClick={resetClock} onMouseLeave={()=>showIcons(2,false)} onMouseEnter={()=>showIcons(2,true)} 
+      className="pomodoro-stop-btn">{iconVisible[2] ? <i class="fas fa-stop"></i>: "Stop"}</button>)}
+      </div>
     </div>
   )
 }

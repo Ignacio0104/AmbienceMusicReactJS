@@ -139,8 +139,6 @@ function RegisterForm(props) {
         validateDate();
         validateEmail();
         submitRequest();
-        
-
     }
     
   return (
