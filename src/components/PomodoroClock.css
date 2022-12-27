@@ -117,3 +117,39 @@
 .pomodoro-pause-btn{
     background-color: #ffbe0b;
 }
+
+@media screen and (max-width:760px) {
+    .clock-container{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .pomodoro-time label{
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .set-container{
+        font-size: 15px;
+        margin-top: 10px;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        width: fit-content;
+        padding: 5px;
+        border: 1px solid black;
+    }
+
+    .pomodoro-minutes{
+        display: flex;
+        justify-content: center;
+        padding: 0px;
+        font-size: 30px;
+        margin-bottom: 15px;
+        font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    }
+    .clock-container{
+        padding: 30px;
+        width: fit-content;
+        margin: auto;
+    }
+    
+}
