@@ -77,12 +77,15 @@ function Cards(props) {
                   <input ref={filterText} onChange={filterAction} className='input-text' type="text" placeholder="Search..."></input>
                   <p>Type your keywords (For example: "relax", "Harry Potter", "Beach", etc)</p>
           </div>
+      
           <div className='button-container'>
-              <Button className="btns" buttonStyle="btn--primary"
+          {
+            localStorage.getItem("role")==="admin" &&
+            <Button className="btns" buttonStyle="btn--primary"
               buttonSize="btn--large" navigateTo={"/add-video"}>
                   Add video <i class="fas fa-plus-circle"></i>
               </Button>
-              
+          }     
           </div>
         </div>
         

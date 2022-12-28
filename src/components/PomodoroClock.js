@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "./PomodoroClock.css"
+import breakSound from "../sounds/break-time-sound.wav"
+import focusSound from "../sounds/Focus-time-sound.wav"
+import {Howl,Howler} from "howler"
 
 function PomodoroClock() {
   const [timerMinutes, setTimerMinutes] = useState(0);
@@ -15,6 +18,19 @@ function PomodoroClock() {
   const minutesText = useRef();
   const breakMinutesText = useRef()
   const setsText = useRef();
+  const focusSoundRef = useRef();
+
+
+
+const playBellSound =(audio)=>
+{
+  var player = new Audio(audio);
+  player.crossOrigin = "anonymous";
+  player.addEventListener("canplaythrough", function() {
+      player.play();
+  })
+}
+
 
   const runClock = ()=>{
     setNumberOfSets(setsText.current.value);
@@ -51,6 +67,7 @@ function PomodoroClock() {
           setTimerMinutes(timerMinutes-1);
           setSecondsAcumulator(secondsAcumulator+1);
         }else{
+          playBellSound(breakSound);
           setFocus(false);
           setProgress(0);
           setTimerSeconds(59);
@@ -64,7 +81,7 @@ function PomodoroClock() {
       calulatePercentage();
     },1000)
   }
-
+  
 
   const breakTime = ()=>{
     let interval = setInterval(()=>{
@@ -76,6 +93,7 @@ function PomodoroClock() {
           setBreakMinutes(breakMinutes-1);
           setSecondsAcumulator(secondsAcumulator+1);
         }else{
+          playBellSound(focusSound);
           setFocus(true);
           setProgress(0);
           setSecondsAcumulator(0);
@@ -135,18 +153,19 @@ function PomodoroClock() {
 
   return (
     <div>
+    <audio ref={focusSoundRef} src="../sounds/Focus-time-sound.wav"></audio>
       <div className='pomodoro-header'>
         <div  className='pomodoro-time'>
           <label>Focus time</label>
-          <input ref={minutesText} className="input-pomodoro" disabled={inputDisabled} type="number" min="0"></input>
+          <input ref={minutesText} defaultValue="25" className="input-pomodoro" disabled={inputDisabled} type="number" min="0"></input>
         </div>
         <div className='pomodoro-time'>
           <label>Break time</label>
-          <input ref={breakMinutesText} className="input-pomodoro" disabled={inputDisabled} type="number" min="0"></input>
+          <input ref={breakMinutesText} defaultValue="10" className="input-pomodoro" disabled={inputDisabled} type="number" min="0"></input>
         </div>
         <div className='pomodoro-time'>
           <label>Sets</label>
-          <input ref={setsText} className="input-pomodoro" disabled={inputDisabled} type="number" min="0"></input>
+          <input ref={setsText} defaultValue="4" className="input-pomodoro" disabled={inputDisabled} type="number" min="0"></input>
         </div>
       </div>
       <div className='pomodoro-main'>

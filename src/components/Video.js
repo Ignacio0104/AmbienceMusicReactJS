@@ -40,15 +40,20 @@ function Video(props) {
             <div className="video-container">
             <div className="video-item">
                 <div className="video-info">
-                    <h1 className="video-title"> {props.video[0].name} </h1>
-                    <iframe className="video-image" src={props.video[0].url} title="Youtube video" allo></iframe>
+                    <h1 className="video-title"> {props.video[0].name} </h1>             
+                    <iframe className="video-image" src={props.video[0].url} title="Youtube video" allowFullScreen></iframe>
+                    <div className='information-container'>
+                      <p> Views: {props.video[0].views}</p>
+                    </div>
                     <p>{props.video[0].description}</p>
                 </div>
             </div>
-            <button onClick={tooglePomodoro}>Pomodoro </button>
+            <div className='pomodoro-btn-container'>
+              <button className='pomodoro-btn' onClick={tooglePomodoro}>{pomodoroVisible ? "Close" : "Pomodoro"} </button>
+            </div>
             {
               pomodoroVisible && <PomodoroClock></PomodoroClock>
-            }       
+            } 
         </div>
 
     </div>

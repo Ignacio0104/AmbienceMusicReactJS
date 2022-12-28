@@ -5,6 +5,7 @@ import "./FormAddVideo.css"
 import  {firebaseApp}  from "../credentials";
 import {getAuth, signOut} from 'firebase/auth'
 import {getFirestore,collection,addDoc,getDocs,doc,deleteDoc,getDoc,setDoc} from "firebase/firestore"
+import { useNavigate } from 'react-router-dom';
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
@@ -23,6 +24,8 @@ function FormAddVideo() {
     const urlText = useRef();
     const pictureText = useRef();
     const descriptionText = useRef();
+
+    const history = useNavigate();
 
   const addVideo = ()=>{
     dispatch(
@@ -116,6 +119,7 @@ function FormAddVideo() {
         validatePicture();
         validateDescription();
         updateList();
+        history("/")
     }
     
   return (

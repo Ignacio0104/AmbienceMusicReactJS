@@ -45,13 +45,44 @@
     flex-direction: column;
     text-align: center;
     margin: auto;
-    width: 80%;
+    width: 600px;
   }
   .video-info p{
-    padding-top: 30px;
+    padding-top: 10px;
     font-family: 'Dosis', sans-serif;
     font-weight: bold;
   }
+  .pomodoro-btn-container{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .pomodoro-btn{
+    padding:10px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    border-radius: 7px;
+    border-style: none;
+    color: #0d1b2a;
+    cursor: pointer;
+  }
+  .pomodoro-btn:hover{
+    color: #fff;
+    background-color: #0d1b2a;
+    transition: 0.8s;
+  }
+
+  .information-container{
+    font-size: 14px;
+    display: flex;
+    margin-left: auto;
+  }
+
+  .information-container p{
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+
 
   @media screen and (max-width:1165px) {
     .video-title{
@@ -81,6 +112,9 @@
     .video-title{
         font-size:15px;
     }
+    .video-info {
+      width: auto;
+    }
     .video-info p{
         font-size: 14px;
     }
@@ -91,6 +125,10 @@
     .video-container{
         margin: 2vh 2vh 2vh 2vh;
         padding: 15px 2px 15px 2px;
+    }
+
+    .pomodoro-btn{
+      font-size: 12px;
     }
 
 }
