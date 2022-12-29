@@ -3,31 +3,10 @@ import { useDispatch } from '../store/StoreProvider';
 import { getVideos } from '../store/storeReducer';
 import "./Spinner.css"
 
-function Spinner(props) {
-
-    const [spinnerVisible, setSpinnerVisible] = useState(true);
-    const dispatch = useDispatch();
-    
-    const hideSpinner = async()=>{     
-        let response = await getVideos();
-        if(response!== null && response.length>0)
-        {
-           dispatch({
-            type: "UPDATE_ALL",
-            payload:{
-              list: response
-            }
-           })
-           setSpinnerVisible(false)
-           props.loading();
-        }else{
-          console.log("Hubo un problema")
-        }
-    }
-    
+function Spinner() {
 
   return (
-    <div onLoad={hideSpinner} className={`${spinnerVisible ? "spinner-container" : "spinner-hide"}`}>
+    <div className="spinner-container">
         <img src="/images/1495.gif" className="spinner-item" alt='spinner loader'/> 
     </div>
   )
