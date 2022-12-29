@@ -29,13 +29,11 @@ function Home(props){
             }
            })
            setIsLoading(false)
-           props.loading();
         }else{
-          console.log("Hubo un problema")
+          console.log("There was a problem")
         }
     }
     
-
     useEffect(() => {
         fetchVideos();
     }, [])

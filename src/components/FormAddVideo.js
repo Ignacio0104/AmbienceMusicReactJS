@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useDispatch } from '../store/StoreProvider';
 import "./FormAddVideo.css"
 
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
-function FormAddVideo() {
+function FormAddVideo(props) {
     const dispatch = useDispatch();
     const [labels, setLabels] = useState([]);
     const [nameError, setNameError] = useState(false);
@@ -19,6 +19,7 @@ function FormAddVideo() {
     const [pictureError, setPictureError] = useState(false);
     const [descriptionError, setDescriptionError] = useState(false);
     const [allowSubmit, setAllowSubmit] = useState(false)
+    const [editionMode, setEditionMode] = useState(false)
     const labelText = useRef();
     const nameText = useRef();
     const urlText = useRef();
@@ -26,6 +27,15 @@ function FormAddVideo() {
     const descriptionText = useRef();
 
     const history = useNavigate();
+
+    useEffect(() => {
+        setEditionMode(props.videoToEdit !== null)
+        if(editionMode){
+            setLabels(props.videoToEdit.label);
+        }
+
+    }, [editionMode])
+    
 
   const addVideo = ()=>{
     dispatch(
@@ -127,8 +137,10 @@ function FormAddVideo() {
      <video src='/videos/video-form.mp4'  type="video/mp4"  autoPlay loop muted />
         <div className='form-addVideo-container'>
             <form className='form-add'>
-                <input type="text" onBlur={validateName} className={nameError && "error-border"} ref={nameText} placeholder="name"/>
-                <input type="text" onBlur={validateUrl} className={urlError && "error-border"} ref={urlText} placeholder="url"></input>
+                <input type="text" onBlur={validateName} className={nameError && "error-border"} 
+                ref={nameText} placeholder="name" defaultValue={editionMode ? props.videoToEdit.name : ""}/>
+                <input type="text" onBlur={validateUrl} className={urlError && "error-border"} 
+                ref={urlText} placeholder="url" defaultValue={editionMode ? props.videoToEdit.url : ""}></input>
                 <p> {nameError && "Minimun 6 characters"}</p>
                 <p> {urlError && "Use a validate embed youtube link"}</p>
                 <input type="text" onBlur={validateLabel} className={labelsError && "error-border"} ref={labelText} placeholder="labels"></input>
@@ -144,11 +156,24 @@ function FormAddVideo() {
                         <p>There are no labels added</p>
                     </div>
                 )}
-                <input type="text" onBlur={validatePicture} className={`picture-input ${pictureError && "error-border"}`} ref={pictureText} placeholder="picture"></input>
+                <input type="text" onBlur={validatePicture} 
+                className={`picture-input ${pictureError && "error-border"}`} ref={pictureText} 
+                placeholder="picture" defaultValue={editionMode ?  props.videoToEdit.src : ""}></input>
                 <p className='error-label-center'> {pictureError && "Link must begin with 'https://' and be .jpg, .jpeg or .bmp"}</p>
-                <textarea type="text" onBlur={validateDescription} className={`description-input ${descriptionError && "error-border"}` } ref={descriptionText} placeholder="description"></textarea>
+                <textarea type="text" onBlur={validateDescription} 
+                className={`description-input ${descriptionError && "error-border"}` } 
+                ref={descriptionText} placeholder="description" 
+                defaultValue={editionMode ? props.videoToEdit.description: ""}></textarea>
                 <p className='error-label-center'> {descriptionError && "Description can't be less than 30 characters"}</p>
-                <button type='submit' disabled={allowSubmit ? false : true} onClick={validateFields}> Submit </button>
+                {
+                    editionMode ?
+                    (<div className='edition-mode-btns'>
+                        <button type='submit' onClick={validateFields}> Edit </button>
+                        <button type='submit'> Delete </button>
+                    </div>)
+                    :
+                    <button type='submit' className='submit-btn-add' disabled={allowSubmit ? false : true} onClick={validateFields}> Submit </button>
+                }        
             </form>
         </div>
     </div>

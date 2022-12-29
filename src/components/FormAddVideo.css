@@ -48,11 +48,17 @@ video{
 }
 
 
-.form-add button{
+.submit-btn-add{
     grid-column: 1/3;
     padding: 10px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+}
+
+.edition-mode-btns{
+    grid-column: 1/3;
+    display: flex;
+    justify-content: space-between;
 }
 
 .labels-container{

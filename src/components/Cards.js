@@ -12,6 +12,7 @@ function Cards(props) {
   const videos = useStore();
   const dispatch = useDispatch();
   const filterText = useRef();
+  const [editionMode, setEditionMode] = useState(false)
   
   videos.sort((vOne,vTwo)=>vTwo.views-vOne.views)
 
@@ -77,16 +78,23 @@ function Cards(props) {
                   <input ref={filterText} onChange={filterAction} className='input-text' type="text" placeholder="Search..."></input>
                   <p>Type your keywords (For example: "relax", "Harry Potter", "Beach", etc)</p>
           </div>
-      
-          <div className='button-container'>
+          
           {
             localStorage.getItem("role")==="admin" &&
-            <Button className="btns" buttonStyle="btn--primary"
-              buttonSize="btn--large" navigateTo={"/add-video"}>
-                  Add video <i class="fas fa-plus-circle"></i>
-              </Button>
+            (
+              <div className='button-container-videos'>
+                <Button className="btns" buttonStyle="btn--primary"
+                buttonSize="btn--large" onClick={()=>setEditionMode(!editionMode)}>
+                    Edit videos <i className="fas fa-pen-square"></i>
+                </Button>
+                <Button className="btns" buttonStyle="btn--primary"
+                buttonSize="btn--large" navigateTo={"/add-video"}>
+                    Add video <i className="fas fa-plus-circle"></i>
+                </Button>
+              </div>
+            )
           }     
-          </div>
+
         </div>
         
       )}
@@ -103,6 +111,9 @@ function Cards(props) {
               src={video.picture}
               name={video.name}
               label={video.theme}
+              edition={editionMode}
+              url={video.url}
+              description={video.description}
             />)):
             (
               <h1 className='no-results'>No videos found...</h1>

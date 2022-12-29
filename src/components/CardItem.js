@@ -12,7 +12,13 @@ function CardItem(props) {
                 <div className='cards__item__info'>
                     <h5 className='cards__item__text'>{props.name}</h5>
                 </div>
-            </Link>      
+            </Link>     
+            {
+                props.edition && 
+                <Link style={{position:"absolute"}} to="/add-video" state={props}>
+                    <i className="edit-icon fas fa-pencil-alt"></i>
+                </Link>          
+            }     
         </li>
     </>
   )

@@ -121,19 +121,22 @@
     margin-right: 30px;
     width: 400px;
   }
+
+  .button-container-videos{
+    display: flex;
+    justify-content: space-between
+  }
   
-  .button-container .btn{
-    margin-left: 80px;
-    margin-top: 20px;
+  .button-container-videos .btn{
     border: solid 1px #252e48;
     font-family: 'Dosis', sans-serif;
   }
 
-  .button-container .btn i{
+  .button-container-videos .btn i{
     margin-left: 15px;
   }
 
-  .button-container .btn:hover{
+  .button-container-videos .btn:hover{
     color: #fff;
     background-color: #252e48;
     border: solid 1px #adb5bd;
@@ -161,6 +164,20 @@
     background-color: #252e48;
     border: solid 1px #adb5bd;
     transition: 0.5s ease-out;
+  }
+
+  .edit-icon{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+    background-color: #fff;
+    border-radius:  100%;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .edit-icon:hover{
+    
   }
   @media only screen and (min-width: 1200px) {
     .content__blog__container {
@@ -201,7 +218,7 @@
     .form-container p{
       font-size: 12px;
     }
-    .button-container .btn{
+    .button-container-videos .btn{
       margin-left: 0px;
       margin-top: 30px;
     }
