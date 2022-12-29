@@ -29,10 +29,6 @@ function HeroSection() {
       <h1>JUST RELAX AND FOCUS</h1>
       <p>Get your work done with us!</p>
       <div className='hero-btns'>
-        <Button className="btns" buttonStyle="btn--outline"
-        buttonSize="btn--large" navigateTo={"/blog"}>
-            Information
-        </Button>
         <Button className="btns" videoId={videos[randomId].id} onClick={getRandomId} buttonStyle="btn--primary"
         buttonSize="btn--large" navigateTo={"/video"}>
             RANDOM VIDEO <i className='far fa-play-circle'/>

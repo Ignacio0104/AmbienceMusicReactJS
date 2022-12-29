@@ -59,6 +59,10 @@ video{
     grid-column: 1/3;
     display: flex;
     justify-content: space-between;
+    gap: 10px;
+}
+.edition-mode-btns button{
+    width: 100%;
 }
 
 .labels-container{
@@ -131,6 +135,42 @@ video{
     font-size: 20px;
 }
 
+.modal-form-delete{
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal-form-content{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    justify-content: center;
+    grid-gap: 10px;
+    align-items: center;
+    background-color: white;
+    opacity: 1;
+    height: 50%;
+    padding: 20px;
+    border-radius: 10px;
+
+    
+}
+
+.modal-form-content h1{
+    grid-column: 1/3;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+.modal-form-content button{
+    padding: 10px;
+}
 
 @media only screen and (max-width: 768px) {
     .form-add{

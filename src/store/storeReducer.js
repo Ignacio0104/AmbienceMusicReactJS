@@ -7,7 +7,8 @@ const types = {
     ADD: "ADD",
     UPDATE_ALL : "UPDATE_ALL",
     DELETE : "DELETE",
-    INCREASE_VIEWS: "INCREASE_VIEWS"
+    INCREASE_VIEWS: "INCREASE_VIEWS",
+    UPDATE:"UPDATE"
 }
 
 const initialStore = [{
@@ -98,6 +99,19 @@ const storeReducer = (state, action) => {
             {
                 ...video,
                 views: video.views++
+            }:
+            video)
+        case types.UPDATE:
+            return state.map((video)=>
+            (video.id===action.payload.id)
+            ?
+            {
+                ...video,
+                name: action.payload.name,
+                url: action.payload.url,
+                theme: action.payload.theme,
+                picture: action.payload.picture,
+                description: action.payload.description
             }:
             video)
         default:

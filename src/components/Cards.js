@@ -38,16 +38,7 @@ function Cards(props) {
 
   let limit = props.limit ? props.limit : videos.length+1;
   
-  /*const deleteVideo= async(id)=>{
-    alert(id)
-    await deleteDoc(doc(db,"videos",id))
-    dispatch({
-        type: "DELETE",
-        payload:{
-            id: id
-        } 
-    })
-}*/
+
 
    const getOne = async (id)=>{
       try {
@@ -58,14 +49,6 @@ function Cards(props) {
         console.log(error)
       }
    }
-
-  const updateVideo = async(id)=>{
-      await setDoc(doc(db,"videos",id),{
-        //Toda la informacion
-        id: id,
-        nombre: id
-      })
-  }
 
 
   return (
@@ -112,8 +95,6 @@ function Cards(props) {
               name={video.name}
               label={video.theme}
               edition={editionMode}
-              url={video.url}
-              description={video.description}
             />)):
             (
               <h1 className='no-results'>No videos found...</h1>

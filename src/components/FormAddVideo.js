@@ -29,9 +29,10 @@ function FormAddVideo(props) {
     const history = useNavigate();
 
     useEffect(() => {
+        console.log(props)
         setEditionMode(props.videoToEdit !== null)
         if(editionMode){
-            setLabels(props.videoToEdit.label);
+            setLabels(props.videoToEdit.theme);
         }
 
     }, [editionMode])
@@ -41,6 +42,21 @@ function FormAddVideo(props) {
     dispatch(
       {
         type: "ADD",
+        payload:{
+          name:nameText.current.value, 
+          url:urlText.current.value,
+          theme: labels,
+          picture: pictureText.current.value,
+          description: descriptionText.current.value
+        }
+      }
+    )
+  }
+
+  const updateVideo = ()=>{
+    dispatch(
+      {
+        type: "UPDATE",
         payload:{
           name:nameText.current.value, 
           url:urlText.current.value,
@@ -101,7 +117,7 @@ function FormAddVideo(props) {
             }
     }
     
-    const updateList =async ()=>{
+    const addRegister =async ()=>{
         
         if(!nameError&&!urlError&&!labelsError&&!pictureError&&!descriptionError)
         {
@@ -121,6 +137,37 @@ function FormAddVideo(props) {
         }
     }
 
+    const updateRegister =async (id)=>{
+        
+        if(!nameError&&!urlError&&!labelsError&&!pictureError&&!descriptionError)
+        {
+            updateVideo();   
+            
+            try{         
+                await setDoc(doc(db,"videos",id),{
+                    name:nameText.current.value, 
+                    url:urlText.current.value,
+                    theme: labels,
+                    picture: pictureText.current.value,
+                    description: descriptionText.current.value,
+                    views: props.videoToEdit.views
+                })                     
+            }catch(err){
+                console.log(err)
+            }
+        }
+    }
+
+    const deleteRegister = async (id)=>{        
+        await deleteDoc(doc(db,"videos",id))
+        dispatch({
+            type: "DELETE",
+            payload:{
+                id: id
+            } 
+        })
+    }
+
     const validateFields = (e)=>{
         e.preventDefault();
         validateName();
@@ -128,13 +175,30 @@ function FormAddVideo(props) {
         validateLabel();
         validatePicture();
         validateDescription();
-        updateList();
+        if(editionMode){
+            updateRegister(props.videoToEdit.id);
+        }else{
+            addRegister();
+        }
         history("/")
+    }
+
+    const confirmDelete = (e)=>{
+        e.preventDefault();
+        deleteRegister(props.videoToEdit.id);
+        history("/");
     }
     
   return (
     <div className='form-main'>
      <video src='/videos/video-form.mp4'  type="video/mp4"  autoPlay loop muted />
+     <div className='modal-form-delete'>
+        <div className='modal-form-content'>
+            <h1>Are you sure you want to delete this register?</h1>
+            <button>Accept</button>
+            <button>Cancel</button>
+        </div>
+     </div>
         <div className='form-addVideo-container'>
             <form className='form-add'>
                 <input type="text" onBlur={validateName} className={nameError && "error-border"} 
@@ -158,7 +222,7 @@ function FormAddVideo(props) {
                 )}
                 <input type="text" onBlur={validatePicture} 
                 className={`picture-input ${pictureError && "error-border"}`} ref={pictureText} 
-                placeholder="picture" defaultValue={editionMode ?  props.videoToEdit.src : ""}></input>
+                placeholder="picture" defaultValue={editionMode ?  props.videoToEdit.picture : ""}></input>
                 <p className='error-label-center'> {pictureError && "Link must begin with 'https://' and be .jpg, .jpeg or .bmp"}</p>
                 <textarea type="text" onBlur={validateDescription} 
                 className={`description-input ${descriptionError && "error-border"}` } 
@@ -169,7 +233,7 @@ function FormAddVideo(props) {
                     editionMode ?
                     (<div className='edition-mode-btns'>
                         <button type='submit' onClick={validateFields}> Edit </button>
-                        <button type='submit'> Delete </button>
+                        <button type='submit' onClick={confirmDelete}> Delete </button>
                     </div>)
                     :
                     <button type='submit' className='submit-btn-add' disabled={allowSubmit ? false : true} onClick={validateFields}> Submit </button>
