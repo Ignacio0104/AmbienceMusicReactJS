@@ -76,12 +76,22 @@
   .information-container{
     font-size: 14px;
     display: flex;
-    margin-left: auto;
+    justify-content: space-between;
   }
 
   .information-container p{
     font-family: 'Roboto Condensed', sans-serif;
   }
+
+  .information-container i{
+    padding: 12px 10px 5px 10px;
+    cursor: pointer;
+  }
+
+  .favorite-container{
+    display: flex;
+  }
+
 
 
   @media screen and (max-width:1165px) {
@@ -129,6 +139,10 @@
 
     .pomodoro-btn{
       font-size: 12px;
+    }
+
+    .information-container p{
+      font-size: 10px;
     }
 
 }

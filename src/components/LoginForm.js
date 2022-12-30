@@ -41,6 +41,8 @@ function LoginForm(props) {
             let user = doc._document.data.value.mapValue.fields;
             if(user !=null)
             {
+                let favoritesList = user.favorites.arrayValue.values
+                console.log(favoritesList)
                 localStorage.setItem("userName",user.name.stringValue);
                 localStorage.setItem("lastname",user.lastname.stringValue);
                 localStorage.setItem("dateOfBirth",user.dateOfBirth.stringValue);
@@ -49,6 +51,7 @@ function LoginForm(props) {
                 localStorage.setItem("role",user.role.stringValue);
                 localStorage.setItem("userId",user.userId.stringValue);
                 localStorage.setItem("docId",doc._document.key.path.segments[6]);
+                localStorage.setItem("favorites",JSON.stringify(favoritesList))
                 props.changeLogin(true);
                 history("/");
             }
