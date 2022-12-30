@@ -144,7 +144,6 @@ video{
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
 }
 
 .modal-form-content{
@@ -153,13 +152,12 @@ video{
     justify-content: center;
     grid-gap: 10px;
     align-items: center;
-    background-color: white;
+    background: linear-gradient(153deg, rgba(237,237,233,1) 4%, rgba(214,204,194,1) 46%, rgba(245,235,224,1) 91%);
     opacity: 1;
-    height: 50%;
+    height: 40%;
     padding: 20px;
     border-radius: 10px;
-
-    
+    border: 1px solid black;
 }
 
 .modal-form-content h1{
@@ -170,6 +168,8 @@ video{
 
 .modal-form-content button{
     padding: 10px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 768px) {

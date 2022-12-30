@@ -18,8 +18,9 @@ function FormAddVideo(props) {
     const [labelsError, setLabelsError] = useState(false);
     const [pictureError, setPictureError] = useState(false);
     const [descriptionError, setDescriptionError] = useState(false);
-    const [allowSubmit, setAllowSubmit] = useState(false)
-    const [editionMode, setEditionMode] = useState(false)
+    const [allowSubmit, setAllowSubmit] = useState(false);
+    const [editionMode, setEditionMode] = useState(false);
+    const [modalFormVisble, setModalFormVisble] = useState(false)
     const labelText = useRef();
     const nameText = useRef();
     const urlText = useRef();
@@ -183,20 +184,29 @@ function FormAddVideo(props) {
         history("/")
     }
 
-    const confirmDelete = (e)=>{
+    const deleteVideo = (e)=>{
         e.preventDefault();
-        deleteRegister(props.videoToEdit.id);
-        history("/");
+        setModalFormVisble(true);
+        /*deleteRegister(props.videoToEdit.id);
+        history("/");*/
+    }
+
+    const confirmDelete= (boolean)=>{
+        if(boolean){
+            deleteRegister(props.videoToEdit.id);
+            history("/");
+        }
+        setModalFormVisble(false)
     }
     
   return (
     <div className='form-main'>
      <video src='/videos/video-form.mp4'  type="video/mp4"  autoPlay loop muted />
-     <div className='modal-form-delete'>
+     <div className='modal-form-delete' style={{display: modalFormVisble ? "flex" : "none"}}>
         <div className='modal-form-content'>
             <h1>Are you sure you want to delete this register?</h1>
-            <button>Accept</button>
-            <button>Cancel</button>
+            <button onClick={()=>confirmDelete(true)}>Accept</button>
+            <button onClick={()=>confirmDelete(false)}>Cancel</button>
         </div>
      </div>
         <div className='form-addVideo-container'>
@@ -233,7 +243,7 @@ function FormAddVideo(props) {
                     editionMode ?
                     (<div className='edition-mode-btns'>
                         <button type='submit' onClick={validateFields}> Edit </button>
-                        <button type='submit' onClick={confirmDelete}> Delete </button>
+                        <button type='submit' onClick={deleteVideo}> Delete </button>
                     </div>)
                     :
                     <button type='submit' className='submit-btn-add' disabled={allowSubmit ? false : true} onClick={validateFields}> Submit </button>
