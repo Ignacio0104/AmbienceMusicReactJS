@@ -51,7 +51,6 @@ function Video(props) {
        });
    }
 
-
     const tooglePomodoro = ()=>{
       setPomodoroVisible(!pomodoroVisible)
     }

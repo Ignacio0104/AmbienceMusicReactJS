@@ -7,6 +7,7 @@ import {createUserWithEmailAndPassword, getAuth} from 'firebase/auth'
 import {getFirestore, doc, updateDoc} from "firebase/firestore"
 import { useStore } from '../store/StoreProvider';
 import CardItem from './CardItem';
+import SmallCard from './SmallCard';
 
 const db = getFirestore(firebaseApp); //ADD A BASE DE DATOS
 
@@ -33,7 +34,8 @@ function UserProfile(props) {
         genre: localStorage.getItem("genre"),
         role: localStorage.getItem("role"),
         id: localStorage.getItem("userId"),
-        docId:localStorage.getItem("docId")
+        docId:localStorage.getItem("docId"),
+        favorites: JSON.parse(localStorage.getItem("favorites"))
     }
 
   const validateName = ()=>{
@@ -122,7 +124,7 @@ const validateDate = ()=>{
         </div>
         <div className='profile-info-container'>
           <div className='profile-info-title'>
-            <h2>{editMode ? <input onBlur={validateName} ref={nameTextRef} placeholder="Name" defaultValue={user.name}  type="text"></input> : user.name + " "} 
+            <h2 className='profile-title-content'>{editMode ? <input onBlur={validateName} ref={nameTextRef} placeholder="Name" defaultValue={user.name}  type="text"></input> : user.name + " "} 
             {editMode ? <input onInput={validateLastname} ref={lastnameTextRef} placeholder="Lastname" defaultValue={user.lastname} type="text"></input> : user.lastname} </h2>
             <i onClick={toogleEditMode} style={{cursor:"pointer"}} class="fas fa-edit"></i>    
           </div> 
@@ -138,6 +140,7 @@ const validateDate = ()=>{
               </div>
             )
           }
+          <SmallCard favorites={user.favorites}></SmallCard>
         </div>
       </div> 
     </div>

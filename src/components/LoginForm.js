@@ -42,7 +42,7 @@ function LoginForm(props) {
             if(user !=null)
             {
                 let favoritesList = user.favorites.arrayValue.values
-                console.log(favoritesList)
+                console.log(user)
                 localStorage.setItem("userName",user.name.stringValue);
                 localStorage.setItem("lastname",user.lastname.stringValue);
                 localStorage.setItem("dateOfBirth",user.dateOfBirth.stringValue);
