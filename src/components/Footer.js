@@ -10,6 +10,10 @@ function Footer() {
   const [subscribed, setSubscribed] = useState(false);
   const buttonSubscribe = useRef()
   const auth = getAuth(firebaseApp);
+  let images = ["https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png",
+"https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr",
+"https://www.adobe.com/es/express/create/media_127a4cd0c28c2753638768caf8967503d38d01e4c.jpeg?width=400&format=jpeg&optimize=medium",
+"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/BMW_logo_%28gray%29.svg/2048px-BMW_logo_%28gray%29.svg.png"]
 
   const toggleSubscription = ()=>{
     setSubscribed(true);
@@ -17,7 +21,7 @@ function Footer() {
 
   return (
     <div className='footer-container'>
-      <section className='footer-subscription'>
+      {/* <section className='footer-subscription'>
         <p className='footer-subscription-heading'>Join our newsletter to receive
         all the information</p>
         <p className='footer-subscription-text'>
@@ -29,7 +33,52 @@ function Footer() {
             </form>
             <Button buttonStyle="btn--outline" ref={buttonSubscribe} onClick={toggleSubscription} className="sub-btn"> {subscribed ? "Subscription submitted succesfully" : "Subscribe"} </Button>
         </div>
-      </section>
+      </section> */}
+      <div className='slider-footer'>
+        <div className='slide-track'>
+        <div className='slide'>
+          <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png'
+          height={"100px"} width={"250px"} alt="logo" ></img>
+        </div>
+        <div className='slide'>
+          <img src='https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr'
+          height={"100px"} width={"250px"} alt="logo" ></img>
+        </div>
+        <div className='slide'>
+          <img src='https://www.adobe.com/es/express/create/media_127a4cd0c28c2753638768caf8967503d38d01e4c.jpeg?width=400&format=jpeg&optimize=medium'
+          height={"100px"} width={"250px"} alt="logo" ></img>
+        </div>
+        <div className='slide'>
+          <img src='https://cdn.logo.com/hotlink-ok/logo-social.png'
+          height={"100px"} width={"250px"} alt="logo" ></img>
+        </div>
+        <div className='slide'>
+          <img src='https://pub-static.fotor.com/assets/projects/pages/5367889ea0f04e499fe8ffea853e2e33/red-fire-football-club-eaf753c529e84e4d8bdf1042c1f18cdc.jpg'
+          height={"100px"} width={"250px"} alt="logo" ></img>
+        </div>
+        <div className='slide'>
+          <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png'
+          height={"100px"} width={"250px"} alt="logo" ></img>
+        </div>
+        
+          <div className='slide'>
+            <img src='https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr'
+            height={"100px"} width={"250px"} alt="logo" ></img>
+          </div>
+          <div className='slide'>
+            <img src='https://www.adobe.com/es/express/create/media_127a4cd0c28c2753638768caf8967503d38d01e4c.jpeg?width=400&format=jpeg&optimize=medium'
+            height={"100px"} width={"250px"} alt="logo" ></img>
+          </div>
+          <div className='slide'>
+            <img src='https://cdn.logo.com/hotlink-ok/logo-social.png'
+            height={"100px"} width={"250px"} alt="logo" ></img>
+          </div>
+          <div className='slide'>
+            <img src='https://pub-static.fotor.com/assets/projects/pages/5367889ea0f04e499fe8ffea853e2e33/red-fire-football-club-eaf753c529e84e4d8bdf1042c1f18cdc.jpg'
+            height={"100px"} width={"250px"} alt="logo" ></img>
+          </div>
+        </div>
+      </div>
       <div class='footer-links'>
         <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
