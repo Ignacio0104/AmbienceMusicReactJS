@@ -47,14 +47,18 @@ function SmallCard(props) {
       {favoritesVideos.map((video,index)=>
         (
           <SwiperSlide className='slide-container'>
-            <Link key={index} className='small-card-container'>
+            <div key={index} className='small-card-container'>
             <div className='small-card-image-container'>
               <img className='small-card-image' src={video.picture}></img>     
             </div>
               <div className='small-card-information'>
                 <h4>{video.name}</h4>
               </div>
-          </Link>
+              <div className='button-container-small'>
+                <Link to="/video" state={video.id} className='link-video'>Go to video</Link>
+              </div>
+              
+          </div>
          </SwiperSlide>
         ))}
 

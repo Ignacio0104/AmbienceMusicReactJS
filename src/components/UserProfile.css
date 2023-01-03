@@ -101,6 +101,10 @@
     border: 2px solid red;
 }
 
+.no-fav-message{
+    color: #495057;
+}
+
 
 @media only screen and (max-width: 945px) {
     .profile-container{

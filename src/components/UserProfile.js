@@ -140,7 +140,16 @@ const validateDate = ()=>{
               </div>
             )
           }
-          <SmallCard favorites={user.favorites}></SmallCard>
+          
+          {!editMode && 
+          <>
+            <h4>Favorite videos:</h4>
+            {user.favorites.length<1 ? 
+            <h4 className='no-fav-message'> You don't have any favorite videos yet &#128532;</h4> :
+              <SmallCard favorites={user.favorites}></SmallCard>
+            }
+          </>
+          }     
         </div>
       </div> 
     </div>
