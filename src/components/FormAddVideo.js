@@ -31,7 +31,7 @@ function FormAddVideo(props) {
 
     useEffect(() => {
         console.log(props)
-        setEditionMode(props.videoToEdit !== null)
+        setEditionMode(props.videoToEdit !== undefined)
         if(editionMode){
             setLabels(props.videoToEdit.theme);
         }

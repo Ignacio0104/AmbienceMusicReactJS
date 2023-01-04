@@ -8,7 +8,7 @@ export default function FormAdd(){
     const location = useLocation();
     let videoToEdit = location.state;
     const videos = useStore();
-    let video = videos.filter((video)=> video.id === videoToEdit.id)
+    let video = videoToEdit !== null && videos.filter((video)=> video.id === videoToEdit.id)
     return(
        <FormAddVideo videoToEdit={video[0]}></FormAddVideo>
     )
