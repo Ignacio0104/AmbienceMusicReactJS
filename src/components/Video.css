@@ -3,10 +3,10 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     background-image: url("/public/images/img-home.jpg");
     background-position: center;
-    background-size:  auto;
+    background-size: cover;
     background-repeat: no-repeat;
   }
 
